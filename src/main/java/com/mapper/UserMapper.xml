@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.UserMapper">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="com.entity.User">
+        <result column="user_id" property="user_id" jdbcType="INTEGER"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        user_id,
+        username,
+        `password`,
+        `status`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="user.user_id">
+        INSERT INTO user (
+            user_id,
+            username,
+            `password`,
+            `status`
+        ) VALUES (
+            #{user.user_id,jdbcType=INTEGER},
+            #{user.username,jdbcType=VARCHAR},
+            #{user.password,jdbcType=VARCHAR},
+            #{user.status,jdbcType=INTEGER}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="user.user_id">
+        INSERT INTO user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="user.user_id!=null"> user_id,</if>
+            <if test="user.username!=null"> username,</if>
+            <if test="user.password!=null"> `password`,</if>
+            <if test="user.status!=null"> `status`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="user.user_id!=null">#{user.user_id,jdbcType=INTEGER},
+            </if>
+            <if test="user.username!=null">#{user.username,jdbcType=VARCHAR},
+            </if>
+            <if test="user.password!=null">#{user.password,jdbcType=VARCHAR},
+            </if>
+            <if test="user.status!=null">#{user.status,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO user (
+            user_id,
+            username,
+            `password`,
+            `status`
+        )VALUES
+        <foreach collection="users" item="user" index="index" separator=",">
+            (
+            #{user.user_id,jdbcType=INTEGER},
+            #{user.username,jdbcType=VARCHAR},
+            #{user.password,jdbcType=VARCHAR},
+            #{user.status,jdbcType=INTEGER}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="updateByPrimaryKeySelective">
+        UPDATE user
+        <set>
+            <if test="user.username != null"> username= #{user.username,jdbcType=VARCHAR},</if>
+            <if test="user.password != null"> `password`= #{user.password,jdbcType=VARCHAR},</if>
+            <if test="user.status != null"> `status`= #{user.status,jdbcType=INTEGER}</if>
+        </set>
+        WHERE user_id = #{user.user_id,jdbcType=INTEGER}
+    </update>
+</mapper>
+

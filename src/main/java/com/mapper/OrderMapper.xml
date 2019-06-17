@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.OrderMapper">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="com.entity.Order">
+        <result column="order_id" property="order_id" jdbcType="INTEGER"/>
+        <result column="number" property="number" jdbcType="VARCHAR"/>
+        <result column="user_id" property="user_id" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="product_id" property="product_id" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        order_id,
+        `number`,
+        user_id,
+        create_time,
+        product_id,
+        `status`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="order.order_id">
+        INSERT INTO order (
+            order_id,
+            `number`,
+            user_id,
+            create_time,
+            product_id,
+            `status`
+        ) VALUES (
+            #{order.order_id,jdbcType=INTEGER},
+            #{order.number,jdbcType=VARCHAR},
+            #{order.user_id,jdbcType=INTEGER},
+            #{order.createTime,jdbcType=TIMESTAMP},
+            #{order.product_id,jdbcType=INTEGER},
+            #{order.status,jdbcType=INTEGER}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="order.order_id">
+        INSERT INTO order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="order.order_id!=null"> order_id,</if>
+            <if test="order.number!=null"> `number`,</if>
+            <if test="order.user_id!=null"> user_id,</if>
+            <if test="order.createTime!=null"> create_time,</if>
+            <if test="order.product_id!=null"> product_id,</if>
+            <if test="order.status!=null"> `status`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="order.order_id!=null">#{order.order_id,jdbcType=INTEGER},
+            </if>
+            <if test="order.number!=null">#{order.number,jdbcType=VARCHAR},
+            </if>
+            <if test="order.user_id!=null">#{order.user_id,jdbcType=INTEGER},
+            </if>
+            <if test="order.createTime!=null">#{order.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="order.product_id!=null">#{order.product_id,jdbcType=INTEGER},
+            </if>
+            <if test="order.status!=null">#{order.status,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO order (
+            order_id,
+            `number`,
+            user_id,
+            create_time,
+            product_id,
+            `status`
+        )VALUES
+        <foreach collection="orders" item="order" index="index" separator=",">
+            (
+            #{order.order_id,jdbcType=INTEGER},
+            #{order.number,jdbcType=VARCHAR},
+            #{order.user_id,jdbcType=INTEGER},
+            #{order.createTime,jdbcType=TIMESTAMP},
+            #{order.product_id,jdbcType=INTEGER},
+            #{order.status,jdbcType=INTEGER}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="updateByPrimaryKeySelective">
+        UPDATE order
+        <set>
+            <if test="order.number != null"> `number`= #{order.number,jdbcType=VARCHAR},</if>
+            <if test="order.user_id != null"> user_id= #{order.user_id,jdbcType=INTEGER},</if>
+            <if test="order.createTime != null"> create_time= #{order.createTime,jdbcType=TIMESTAMP},</if>
+            <if test="order.product_id != null"> product_id= #{order.product_id,jdbcType=INTEGER},</if>
+            <if test="order.status != null"> `status`= #{order.status,jdbcType=INTEGER}</if>
+        </set>
+        WHERE order_id = #{order.order_id,jdbcType=INTEGER}
+    </update>
+</mapper>
+
