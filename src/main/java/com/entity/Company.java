@@ -1,7 +1,7 @@
 package com.entity;
 
 public class Company {
-    private String compan_info;//公司简介
+    private String company_info;//公司简介
     private Integer company_id;//公司id
     private String company_name;//公司名称
     private String contact;//联系方式
@@ -13,12 +13,12 @@ public class Company {
     public Company() {
     }
 
-    public String getCompan_info() {
-        return compan_info;
+    public String getCompany_info() {
+        return company_info;
     }
 
-    public void setCompan_info(String compan_info) {
-        this.compan_info = compan_info;
+    public void setCompany_info(String company_info) {
+        this.company_info = company_info;
     }
 
     public Integer getCompany_id() {
@@ -80,7 +80,7 @@ public class Company {
     @Override
     public String toString() {
         return "Company{" +
-                "compan_info='" + compan_info + '\'' +
+                "company_info='" + company_info + '\'' +
                 ", company_id=" + company_id +
                 ", company_name='" + company_name + '\'' +
                 ", contact='" + contact + '\'' +

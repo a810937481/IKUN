@@ -3,7 +3,7 @@
 <mapper namespace="com.dao.CompanyMapper">
     <!--auto generated Code-->
     <resultMap id="BaseResultMap" type="com.entity.Company">
-        <result column="compan_info" property="compan_info" jdbcType="VARCHAR"/>
+        <result column="compan_info" property="company_info" jdbcType="VARCHAR"/>
         <result column="company_id" property="company_id" jdbcType="INTEGER"/>
         <result column="company_name" property="company_name" jdbcType="VARCHAR"/>
         <result column="contact" property="contact" jdbcType="VARCHAR"/>
@@ -15,7 +15,7 @@
 
     <!--auto generated Code-->
     <sql id="Base_Column_List">
-        compan_info,
+        company_info,
         company_id,
         company_name,
         contact,
@@ -28,7 +28,7 @@
     <!--auto generated Code-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="company.company_id">
         INSERT INTO company (
-            compan_info,
+            company_info,
             company_id,
             company_name,
             contact,
@@ -52,7 +52,7 @@
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="company.company_id">
         INSERT INTO company
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="company.compan_info!=null"> compan_info,</if>
+            <if test="company.company_info!=null"> compan_info,</if>
             <if test="company.company_id!=null"> company_id,</if>
             <if test="company.company_name!=null"> company_name,</if>
             <if test="company.contact!=null"> contact,</if>
@@ -63,7 +63,7 @@
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="company.compan_info!=null">#{company.compan_info,jdbcType=VARCHAR},
+            <if test="company.company_info!=null">#{company.compan_info,jdbcType=VARCHAR},
             </if>
             <if test="company.company_id!=null">#{company.company_id,jdbcType=INTEGER},
             </if>
@@ -85,7 +85,7 @@
     <!--auto generated Code-->
     <insert id="insertList">
         INSERT INTO company (
-            compan_info,
+            company_info,
             company_id,
             company_name,
             contact,
@@ -96,7 +96,7 @@
         )VALUES
         <foreach collection="companys" item="company" index="index" separator=",">
             (
-            #{company.compan_info,jdbcType=VARCHAR},
+            #{company.company_info,jdbcType=VARCHAR},
             #{company.company_id,jdbcType=INTEGER},
             #{company.company_name,jdbcType=VARCHAR},
             #{company.contact,jdbcType=VARCHAR},
@@ -112,7 +112,7 @@
     <update id="updateByPrimaryKeySelective">
         UPDATE company
         <set>
-            <if test="company.compan_info != null"> compan_info= #{company.compan_info,jdbcType=VARCHAR},</if>
+            <if test="company.company_info != null"> compan_info= #{company.company_info,jdbcType=VARCHAR},</if>
             <if test="company.company_name != null"> company_name= #{company.company_name,jdbcType=VARCHAR},</if>
             <if test="company.contact != null"> contact= #{company.contact,jdbcType=VARCHAR},</if>
             <if test="company.address != null"> address= #{company.address,jdbcType=VARCHAR},</if>
