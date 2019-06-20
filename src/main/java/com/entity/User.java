@@ -4,9 +4,27 @@ public class User {
     private Integer user_id;//用户id
     private String username;//用户账号
     private String password;//用户密码
+    private String phone;//用户手机号码
+    private String email;//用户邮箱地址
     private Integer status;//账号状态
 
     public User() {
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Integer getUser_id() {
@@ -47,6 +65,8 @@ public class User {
                 "user_id=" + user_id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
                 ", status=" + status +
                 '}';
     }

@@ -92,6 +92,37 @@
 
     </script>
 
+    <script language="JavaScript">
+
+        $(document).ready(function () {
+            $("#newUsername").blur(function () {
+                var newUsername = $("#newUsername").val();
+                var newUsernameLength = document.getElementById("newUsername").value.length;
+                var user={
+                    username:newUsername
+                };
+                if (newUsernameLength > 6){
+                    $.ajax({
+                        url:"${ctx}/usercheck",
+                        type:"post",
+                        data:JSON.stringify(user),
+                        datatype:"json",
+                        contentType:"application/json;charset=UTF-8",
+                        success:function (data) {
+                            //console.log(data);
+                            if (data == "true"){
+                                $("#checkNewUsername").html("用户名重复！");
+                            } else {
+                                $("#checkNewUsername").html("用户名");
+                            }
+                        },
+                    })
+                }
+            });
+        });
+
+    </script>
+
     <script>
         $(function () {
             $("#newUsername").blur(function () {
@@ -149,9 +180,6 @@
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="navbar-brand" href="#" style="font-family: 华文行楷;font-size: 30px">逍遥游</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.jsp" style="font-family: 华文行楷;font-size: 25px">主页</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" style="font-family: 华文行楷;font-size: 25px">登录/注册</a>
@@ -241,7 +269,7 @@
                         </div>
 
                         <!-- 模态框主体 -->
-                        <form action="#" method="post">
+                        <form action="${ctx}/register" method="post">
                             <div class="modal-body">
 
                                 <div class="form-group row">

@@ -82,5 +82,13 @@
         </set>
         WHERE user_id = #{user.user_id,jdbcType=INTEGER}
     </update>
+    
+    <select id="getUserByUsername" parameterType="String" resultType="com.entity.User">
+        select * from user where username=#{username}
+    </select>
+
+    <insert id="addUser" parameterType="com.entity.User">
+        insert into user(username,password,phone,email) values (#{username},#{password},#{phone},#{email})
+    </insert>
 </mapper>
 

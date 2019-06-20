@@ -11,4 +11,10 @@ public interface UserService{
     int insertList(List<User> users);
 
     int updateByPrimaryKeySelective(User user);
+
+    boolean login(String username,String password);
+
+    boolean registerCheck(String Username);
+
+    int register(User user);
 }

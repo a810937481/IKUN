@@ -1,16 +1,19 @@
 package com.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 import com.entity.User;
 import com.dao.UserMapper;
 import com.service.UserService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService{
 
-    @Resource
+    @Autowired
     private UserMapper userMapper;
 
     @Override
@@ -31,5 +34,30 @@ public class UserServiceImpl implements UserService{
     @Override
     public int updateByPrimaryKeySelective(User user){
         return userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    public boolean login(String username, String password) {
+        User user = userMapper.getUserByUsername(username);
+        if (user != null && password.equals(user.getPassword()) ){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean registerCheck(String username) {
+        User user = userMapper.getUserByUsername(username);
+        if (user != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public int register(User user) {
+        Integer result = userMapper.addUser(user);
+        return result;
     }
 }

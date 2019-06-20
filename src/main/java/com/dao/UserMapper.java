@@ -15,4 +15,8 @@ public interface UserMapper {
     int insertList(@Param("users") List<User> users);
 
     int updateByPrimaryKeySelective(@Param("user") User user);
+
+    User getUserByUsername(String username);
+
+    int addUser(User user);
 }

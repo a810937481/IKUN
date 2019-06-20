@@ -11,4 +11,5 @@ public interface CompanyService{
     int insertList(List<Company> companys);
 
     int updateByPrimaryKeySelective(Company company);
+
 }
