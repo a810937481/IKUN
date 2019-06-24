@@ -21,4 +21,12 @@
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="maxUploadSize" value="5242880"/>
     </bean>
+
+    <!--拦截登录-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <bean class="com.interceptor.loginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

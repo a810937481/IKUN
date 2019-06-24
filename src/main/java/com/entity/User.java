@@ -4,11 +4,20 @@ public class User {
     private Integer user_id;//用户id
     private String username;//用户账号
     private String password;//用户密码
+    private String nickname;//用户昵称
     private String phone;//用户手机号码
     private String email;//用户邮箱地址
     private Integer status;//账号状态
 
     public User() {
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPhone() {
@@ -65,6 +74,7 @@ public class User {
                 "user_id=" + user_id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", status=" + status +

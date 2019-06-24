@@ -24,6 +24,13 @@
     <!--logo-->
     <link rel="stylesheet" href="${ctx}/static/css/logo.css">
 
+    <%--拦截权限后提示--%>
+    <script>
+        <c:if test="${msg}!=null">
+        alert(${msg});
+        </c:if>
+    </script>
+
 </head>
 <body >
 <!--[if lt IE 8]>
@@ -39,22 +46,21 @@
                 <div class="col-md-6" id="mianDirect">
                     <div id="nav">
                         <ul>
-                            <li><a>欢迎您的来访</a></li>
+                            <li><a href="${ctx}/loginAndRegister">你好，请登录</a></li>
+                            <li><a href="${ctx}/loginAndRegister">免费注册</a></li>
                             <li><a>客服中心</a></li>
                             <li><a>我的逍遥游</a>
                                 <ul>
+                                    <li><a>我的订单</a></li>
                                     <li><a>我的钱包</a></li>
                                     <li><a>我的优惠卷</a></li>
                                     <li><a>我的收藏</a></li>
                                 </ul>
                             </li>
-                            <li><a>我的订单</a>
+                            <li><a>我的信息</a>
                                 <ul>
-                                    <li><a>旅游订单</a></li>
-                                    <li><a>酒店订单</a></li>
-                                    <li><a>机票订单</a></li>
-                                    <li><a>火车票订单</a></li>
-                                    <li><a>全部订单</a></li>
+                                    <li><a>个人资料</a></li>
+                                    <li><a>退出登录</a></li>
                                 </ul>
                             </li>
                         </ul>

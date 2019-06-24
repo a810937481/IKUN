@@ -15,7 +15,7 @@
 
     <style>
         body{
-            background: url("${ctx}/static/img/A.png") no-repeat center 0;
+            background: url("${ctx}/static/img/background.png") no-repeat center 0;
         }
 
         .nav{
@@ -24,11 +24,11 @@
 
         .navbar-brand{
             font-size: 20px;
-            color: #ffffff;
+            color: #000000;
         }
 
         .nav-link{
-            color: #ffffff;
+            color: #000000;
         }
 
         .dropdown-item{
@@ -43,24 +43,58 @@
         }
 
         @font-face {
-            font-family: AMAZR;
-            src: url("${ctx}/static/fonts/AMAZR___.TTF");
+            font-family: ST;
+            src: url("${ctx}/static/fonts/ST.TTF");
         }
     </style>
 
     <script>
 
-        function loginCheck(form) {
-            var usernameValue = document.getElementById("username").value;
-            if(usernameValue.length <= 6)
-            {
-                alert("用户名长度大于6个字符！");
-                return false;
-            }else {
-                return true;
+        $(document).ready(function () {
+                $("#loginbutton").click(
+                    function () {
+                        var username = $("#username").val();
+                        var password = $("#password").val();
+                        var user={
+                            username:username,
+                            password:password
+                        };
+                        if (username.length < 7) {
+                            alert("用户名最少是七位");
+                        }
+                        if (password.length < 7) {
+                            alert("密码最少是七位");
+                        }
+                        if (username.length >= 7 && password.length >= 7) {
+                            $.ajax({
+                                type: "post",
+                                url:"${ctx}/login",
+                                data:JSON.stringify(user),
+                                datatype:"json",
+                                contentType:"application/json;charset=UTF-8",
+                                success:function (data) {
+                                    console.log(data);
+                                    if ("success" == data) {
+                                        window.location.href = "index.jsp";
+                                    } else if ("fail" == data) {
+                                        alert("账号不存在或密码错误");
+                                    } else {
+                                        alert("账号已被封禁，请寻找管理员");
+                                    }
+                                },
+                                error:function () {
+                                    alert("网络错误");
+                                }
+                            })
+                        }
+                    }
+                )
             }
+        )
 
-        }
+    </script>
+
+    <script>
 
         function registerCheck(form) {
             var newUsernameValue = document.getElementById("newUsername").value;
@@ -207,14 +241,14 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-center" style="margin-top: 250px;color: #ececf6;font-size:100px;font-family: 华文行楷;">
-                逍&nbsp;遥&nbsp;游<small style="font-family: AMAZR">Easy Travel</small>
-                <p style="font-family: AMAZR;font-size: 50px">A Simple Travel Website</p>
+            <h1 class="text-center" style="margin-top: 250px;color: #000000;font-size:100px;font-family: 华文行楷;">
+                逍&nbsp;遥&nbsp;游<small style="font-family: ST">Easy Travel</small>
+                <p style="font-family: ST;font-size: 50px">A Simple Travel Website</p>
             </h1>
             <hr>
-            <button type="button" class="btn btn-default" style="margin-left: 690px;background-color: transparent;color: #ececf6;border-color: #ececf6;font-size: 40px;font-family: 华文行楷" data-toggle="modal" data-target="#login">登录</button>
+            <button type="button" class="btn btn-default" style="margin-left: 690px;background-color: transparent;color: #000000;border-color: #000000;font-size: 40px;font-family: 华文行楷" data-toggle="modal" data-target="#login">登录</button>
             &nbsp;
-            <button type="button" class="btn btn-default" style="margin-left: 270px;background-color: transparent;color: #ececf6;border-color: #ececf6;font-size: 40px;font-family: 华文行楷" data-toggle="modal" data-target="#register">注册</button>
+            <button type="button" class="btn btn-default" style="margin-left: 270px;background-color: transparent;color: #000000;border-color: #000000;font-size: 40px;font-family: 华文行楷" data-toggle="modal" data-target="#register">注册</button>
 
             <!-- 登录模态框 -->
             <div class="modal fade" id="login">
@@ -228,7 +262,7 @@
                         </div>
 
                         <!-- 模态框主体 -->
-                        <form action="#" method="post">
+                        <form action="${ctx}/login" method="post">
                             <div class="modal-body">
 
                                 <div class="form-group row">
@@ -248,7 +282,7 @@
 
                             <!-- 模态框底部 -->
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary" id="loginbutton" onclick="return loginCheck(this.form)">登录</button>
+                                <button type="button" class="btn btn-secondary" id="loginbutton">登录</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
                             </div>
                         </form>

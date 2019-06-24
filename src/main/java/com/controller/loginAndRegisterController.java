@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 public class loginAndRegisterController {
 
@@ -38,5 +41,23 @@ public class loginAndRegisterController {
         Integer i = userService.register(user);
         return "/loginAndRegister";
     }
+
+    @RequestMapping("/login")
+    @ResponseBody//返回json类型的数据
+    public String checkLogin(@RequestBody User user, HttpServletRequest request){//解析json类型的数据转化为实体类
+        User user1 = userService.getUserByUsername(user.getUsername());
+        /*System.out.println(user1);*/
+        if (user1 != null) {
+            if (user1.getStatus()!=-1)
+                return "banned";
+
+            if (user1.getPassword().equals(user.getPassword())) {
+                request.getSession().setAttribute("user",user1);
+                return "success";
+            }
+        }
+        return "fail";
+    }
+
 
 }

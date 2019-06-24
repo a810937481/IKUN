@@ -12,7 +12,7 @@ public interface UserService{
 
     int updateByPrimaryKeySelective(User user);
 
-    boolean login(String username,String password);
+    User getUserByUsername(String username);
 
     boolean registerCheck(String Username);
 
