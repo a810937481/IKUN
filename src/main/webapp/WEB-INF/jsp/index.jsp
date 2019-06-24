@@ -10,17 +10,10 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/static/css/default.css">
     <link rel="stylesheet" href="${ctx}/static/css/main.css">
     <link rel="stylesheet" href="${ctx}/static/css/pogo-slider.min.css">
-    <!--导航栏布局框架-->
-    <link rel="stylesheet" href="${ctx}/static/bootstrap/css/bootstrap.css">
-    <script src="${ctx}/static/bootstrap/js/bootstrap.js"></script>
     <!--搜索框-->
     <script src="${ctx}/static/js/jquery-3.3.1.min.js"></script>
     <script src="${ctx}/static/js/search-js/common.js"></script>
     <link rel="stylesheet" href="${ctx}/static/css/search.css">
-    <!--mainDirect -->
-    <link rel="stylesheet" href="${ctx}/static/css/mainDirect.css">
-    <!--title-->
-    <link rel="stylesheet" href="${ctx}/static/css/mainborder.css">
     <!--logo-->
     <link rel="stylesheet" href="${ctx}/static/css/logo.css">
 
@@ -40,38 +33,9 @@
 <div class="container-fluid" >
     <div class="row" >
         <div class="col-md-12"  >
-            <div class="row"  >
-                <!-- language-->	<div class="col-md-6">
-            </div>
-                <div class="col-md-6" id="mianDirect">
-                    <div id="nav">
-                        <ul>
-                            <li><a href="${ctx}/loginAndRegister">你好，请登录</a></li>
-                            <li><a href="${ctx}/loginAndRegister">免费注册</a></li>
-                            <li><a>客服中心</a></li>
-                            <li><a>我的逍遥游</a>
-                                <ul>
-                                    <li><a>我的订单</a></li>
-                                    <li><a>我的钱包</a></li>
-                                    <li><a>我的优惠卷</a></li>
-                                    <li><a>我的收藏</a></li>
-                                </ul>
-                            </li>
-                            <li><a>我的信息</a>
-                                <ul>
-                                    <li><a>个人资料</a></li>
-                                    <li><a>退出登录</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                <%@include file="navigation.jsp"%>
         </div>
     </div>
-</div>
-
-<div id="main-border" >
 </div>
 <div id="logo">
     <img src="${ctx}/static/img/logo/logo.jpg" height="150" width="200" />
