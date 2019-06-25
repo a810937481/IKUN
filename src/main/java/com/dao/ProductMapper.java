@@ -15,4 +15,8 @@ public interface ProductMapper {
     int insertList(@Param("products") List<Product> products);
 
     int updateByPrimaryKeySelective(@Param("product") Product product);
+
+    List<Product> queryProduct(@Param("product") String product_name);
+
+    Product queryByProduct_id(int id);
 }

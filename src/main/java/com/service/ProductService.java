@@ -11,4 +11,8 @@ public interface ProductService{
     int insertList(List<Product> products);
 
     int updateByPrimaryKeySelective(Product product);
+
+    List<Product> queryProduct(String product_name);
+
+    Product queryByProduct_id(int id);
 }

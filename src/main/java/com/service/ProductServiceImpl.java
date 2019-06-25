@@ -32,4 +32,14 @@ public class ProductServiceImpl implements ProductService{
     public int updateByPrimaryKeySelective(Product product){
         return productMapper.updateByPrimaryKeySelective(product);
     }
+
+    @Override
+    public List<Product> queryProduct(String product_name) {
+        return productMapper.queryProduct(product_name);
+    }
+
+    @Override
+    public Product queryByProduct_id(int id) {
+        return null;
+    }
 }
