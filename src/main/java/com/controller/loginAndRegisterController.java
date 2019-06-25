@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class loginAndRegisterController {
@@ -36,6 +35,7 @@ public class loginAndRegisterController {
         User user = new User();
         user.setUsername(newUsername);
         user.setPassword(newPassword);
+        user.setNickname("逍遥客");
         user.setPhone(phoneNumber);
         user.setEmail(email);
         Integer i = userService.register(user);

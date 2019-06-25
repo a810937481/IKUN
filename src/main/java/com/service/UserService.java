@@ -17,4 +17,6 @@ public interface UserService{
     boolean registerCheck(String Username);
 
     int register(User user);
+
+    int updateUser(User user);
 }

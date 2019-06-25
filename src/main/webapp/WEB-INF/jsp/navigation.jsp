@@ -25,7 +25,7 @@
                     <li><a href="${ctx}/loginAndRegister">免费注册</a>${sessionScope.user}</li>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="">${sessionScope.user.nickname}</a></li>
+                        <li><a href="${ctx}/info">${sessionScope.user.nickname}</a></li>
                     </c:otherwise>
                 </c:choose>
                 <li><a>客服中心</a></li>
@@ -39,7 +39,7 @@
                 </li>
                 <li><a>我的信息</a>
                     <ul>
-                        <li><a>个人资料</a></li>
+                        <li><a href="${ctx}/info">个人资料</a></li>
                         <c:if test="${!empty sessionScope.user}">
                         <li><a href="${ctx}/quit">退出登录</a></li>
                         </c:if>

@@ -19,4 +19,6 @@ public interface UserMapper {
     User getUserByUsername(String username);
 
     int addUser(User user);
+
+    int updateUser(User user);
 }

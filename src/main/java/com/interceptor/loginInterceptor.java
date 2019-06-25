@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public class loginInterceptor implements HandlerInterceptor {
     /*忽略不拦截界面*/
-    private static String[] ignore_url = {"/tologin","/login","error.html"};
+    private static String[] ignore_url = {"/register","/login","error.html"};
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-/*        boolean flag=false;
+        boolean flag=false;
         String servletPath=request.getServletPath();
         for (String s : ignore_url) {
             if (servletPath.contains(s)){
@@ -25,14 +25,13 @@ public class loginInterceptor implements HandlerInterceptor {
             User user = (User) request.getSession().getAttribute("user");
             if (user == null) {
                 request.setAttribute("msg", "请先登录再访问网站");
-                request.getRequestDispatcher("/tologin").forward(request, response);
+                request.getRequestDispatcher("/register").forward(request, response);
                 return flag;
             } else {
                 flag = true;
             }
         }
-        return flag;*/
-        return true;
+        return flag;
     }
 
     @Override
