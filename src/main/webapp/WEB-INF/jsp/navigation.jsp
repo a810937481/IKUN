@@ -20,9 +20,9 @@
         <div id="nav">
             <ul>
                 <c:choose>
-                    <c:when test="${sessionScope.user}==null">
+                    <c:when test="${empty sessionScope.user}">
                     <li><a href="${ctx}/loginAndRegister">你好，请登录</a></li>
-                    <li><a href="${ctx}/loginAndRegister">免费注册</a></li>
+                    <li><a href="${ctx}/loginAndRegister">免费注册</a>${sessionScope.user}</li>
                     </c:when>
                     <c:otherwise>
                         <li><a href="">${sessionScope.user.nickname}</a></li>
@@ -40,8 +40,8 @@
                 <li><a>我的信息</a>
                     <ul>
                         <li><a>个人资料</a></li>
-                        <c:if test="${sessionScope.user}!=null">
-                        <li><a href="/quit">退出登录</a></li>
+                        <c:if test="${!empty sessionScope.user}">
+                        <li><a href="${ctx}/quit">退出登录</a></li>
                         </c:if>
                     </ul>
                 </li>

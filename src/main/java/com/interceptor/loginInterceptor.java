@@ -13,7 +13,7 @@ public class loginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        boolean flag=false;
+/*        boolean flag=false;
         String servletPath=request.getServletPath();
         for (String s : ignore_url) {
             if (servletPath.contains(s)){
@@ -31,7 +31,8 @@ public class loginInterceptor implements HandlerInterceptor {
                 flag = true;
             }
         }
-        return flag;
+        return flag;*/
+        return true;
     }
 
     @Override
