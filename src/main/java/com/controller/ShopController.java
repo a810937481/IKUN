@@ -28,13 +28,14 @@ public class ShopController {
 
     @RequestMapping("/query")
     public ModelAndView doQuery(String product_name,ModelAndView mav) {
-        List<Product> products=productService.queryProduct(product_name);
+        System.out.println(product_name);
+        List<Product> products=productService.queryByProduct_name(product_name);
         mav.addObject("products", products);//用jstl取值
-        mav.setViewName("查询结果的jsp页面");//淘宝一行一列的那个界面
+        mav.setViewName("query");//淘宝一行一列的那个界面
         return mav;
     }
 
-    @RequestMapping(value = "/query/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/queryById", method = RequestMethod.GET)
     public ModelAndView queryById(@PathVariable("id") Integer id) {
         Product product=productService.queryByProduct_id(id);//jstl取product的值
         ModelAndView mav = new ModelAndView("详情/结账页面");//有付款按钮的界面

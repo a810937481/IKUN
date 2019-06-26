@@ -6,8 +6,6 @@ public interface OrderInfoService{
 
     int insert(OrderInfo orderInfo);
 
-    int insertSelective(OrderInfo orderInfo);
-
     int insertList(List<OrderInfo> orderInfos);
 
     int updateByPrimaryKeySelective(OrderInfo orderInfo);

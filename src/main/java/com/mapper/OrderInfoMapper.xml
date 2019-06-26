@@ -26,23 +26,6 @@
         )
     </insert>
 
-    <!--auto generated Code-->
-    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="orderInfo.id">
-        INSERT INTO order_info
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="orderInfo.id!=null"> id,</if>
-            <if test="orderInfo.ofOrder!=null"> of_order,</if>
-            <if test="orderInfo.goods!=null"> goods,</if>
-        </trim>
-        VALUES
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="orderInfo.id!=null">#{orderInfo.id,jdbcType=INTEGER},
-            </if>
-            <if test="orderInfo.ofOrder!=null">#{orderInfo.ofOrder,jdbcType=INTEGER},
-            <if test="orderInfo.goods!=null">#{orderInfo.goods,jdbcType=VARCHAR},
-            </if>
-        </trim>
-    </insert>
 
     <!--auto generated Code-->
     <insert id="insertList">

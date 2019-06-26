@@ -44,36 +44,10 @@
     <header class="htmleaf-header">
         <!--搜索框-->
         <div style="width:530px;margin:0 auto;">
-            <div class="search_box">
-                <span class="left l_bg"></span>
-                <span class="right r_bg"></span>
-                <div class="search">
-                    <form name=search_form onSubmit="return bottomForm(this);" target="_blank" method=post>
-                        <div id="pt1" class="select">
-                            <a id="s0">城市</a>
-                            <div style="display:none;" id="pt2" class="part">
-                                <p>
-                                    <a id="s1">北京</a>
-                                    <a id="s2">上海</a>
-                                    <a id="s3">深圳</a>
-                                    <a id="s4">广州</a>
-                                    <a id="s5">苏州</a>
-                                    <a id="s6">杭州</a>
-                                    <a id="s7">武汉</a>
-                                    <a id="s8">成都</a>
-                                    <a id="s9">重庆</a>
-                                    <a id="s10">昆明</a>
-                                    <a id="s11">南京</a>
-                                    <a id="s12">西安</a>
-                                </p>
-                            </div>
-                        </div>
-                        <input id="catid" name="catid" type="hidden" value="7">
-                        <input id="q" class="enter" name="infos" onFocus="if(this.value==''){this.value='';}else{this.select();}this.style.color='black';"  value="逍遥游...">
-                        <input class="sb" name="Input" type="submit" value="">
-                    </form>
-                </div>
-            </div>
+            <form name="query" id="query" action="${ctx}/query" method=post>
+                <input id="product_name" name="product_name" type="text" class="form-control" placeholder="Search" style="border-color: #1e7e34;">
+                <button type="submit" class="btn btn-secondary" id="querybutton" style="border-color: #1e7e34;background-color: #1e7e34;margin-top: -39px;margin-left: 470.5px ">搜索</button>
+            </form>
         </div>
     </header>
     <div class="container">

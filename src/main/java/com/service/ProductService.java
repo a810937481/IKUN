@@ -14,5 +14,7 @@ public interface ProductService{
 
     List<Product> queryProduct(String product_name);
 
+    List<Product> queryByProduct_name(String product_name);
+
     Product queryByProduct_id(int id);
 }

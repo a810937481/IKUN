@@ -39,7 +39,14 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public List<Product> queryByProduct_name(String product_name) {
+        return productMapper.queryProductByName(product_name);
+    }
+
+    @Override
     public Product queryByProduct_id(int id) {
         return null;
     }
+
+
 }

@@ -18,5 +18,7 @@ public interface ProductMapper {
 
     List<Product> queryProduct(@Param("product") String product_name);
 
+    List<Product> queryProductByName(String product_name);
+
     Product queryByProduct_id(int id);
 }

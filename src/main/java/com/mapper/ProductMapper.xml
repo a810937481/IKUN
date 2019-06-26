@@ -93,26 +93,40 @@
         WHERE product_id = #{product.product_id,jdbcType=INTEGER}
     </update>
 
-    <resultMap id="product_list" type="Product">
+    <resultMap id="product_list" type="java.util.Map">
         <id property="product_id" column="product_id"/>
-        <result property="product_info" column="product_info"/>
         <result property="product_name" column="product_name"/>
+        <result property="product_info" column="product_info"/>
         <result property="company_id" column="company_id"/>
         <result property="price" column="price"/>
-        <result property="coment" column="coment"/>
+        <result property="image" column="image"/>
         <result property="company_info" column="company_info"/>
         <result property="company_name" column="company_name"/>
     </resultMap>
 
-    <select id="queryProduct" parameterType="string" resultMap="product_list">
+    <select id="queryProduct" parameterType="String" resultMap="product_list">
         /*select * from product where product_name like concat('%','${product_name}','%')*/
-        select p.product_id,p.product_name,p.product_info,p.coment,p.company_id,c.company_info,c.company_name
+        select p.product_id,p.product_name,p.product_info,p.company_id,p.price,p.image,c.company_info,c.company_name
         from product p,company c
         where p.company_id=c.company_id and p.product_name like contact('%','${product_name}','%')
     </select>
 
-    <select id="queryByProduct_id" parameterType="integer" resultType="Product">
+    <select id="queryByProduct_id" parameterType="Integer" resultType="Product">
         select * from product where product_id=#{id}
     </select>
+
+    <select id="queryProductByName" parameterType="String" resultMap="product_name_list">
+        select * from product where product_name=#{product_name}
+    </select>
+
+    <resultMap id="product_name_list" type="java.util.Map">
+    <id property="product_id" column="product_id"/>
+    <result property="product_name" column="product_name"/>
+    <result property="product_info" column="product_info"/>
+    <result property="company_id" column="company_id"/>
+    <result property="price" column="price"/>
+    <result property="image" column="image"/>
+    </resultMap>
+
 </mapper>
 

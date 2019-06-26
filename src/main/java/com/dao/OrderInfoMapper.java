@@ -11,8 +11,6 @@ import com.entity.OrderInfo;
 public interface OrderInfoMapper {
     int insert(@Param("orderInfo") OrderInfo orderInfo);
 
-    int insertSelective(@Param("orderInfo") OrderInfo orderInfo);
-
     int insertList(@Param("orderInfos") List<OrderInfo> orderInfos);
 
     int updateByPrimaryKeySelective(@Param("orderInfo") OrderInfo orderInfo);

@@ -18,11 +18,6 @@ public class OrderInfoServiceImpl implements OrderInfoService{
     }
 
     @Override
-    public int insertSelective(OrderInfo orderInfo){
-        return orderInfoMapper.insertSelective(orderInfo);
-    }
-
-    @Override
     public int insertList(List<OrderInfo> orderInfos){
         return orderInfoMapper.insertList(orderInfos);
     }
