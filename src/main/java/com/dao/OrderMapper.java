@@ -19,4 +19,6 @@ public interface OrderMapper {
     List<Order> queryMyOrder(@Param("user_id") int user_id);
 
     int delOrder(@Param("order_id") int order_id);
+
+    List<Order> queryByProduct_name(@Param("product_name") String product_name,@Param("user_id") int user_id);
 }

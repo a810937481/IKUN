@@ -15,4 +15,6 @@ public interface OrderService{
     List<Order> queryMyOrder(int id);
 
     int delOrder(int order_id);
+
+    List<Order> queryProduct_name(String product_name, int user_id);
 }

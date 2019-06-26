@@ -119,5 +119,13 @@
     <delete id="delOrder" parameterType="integer">
         delete from tb_order where order_id=#{order_id}
     </delete>
+
+    <select id="queryByProduct_name" resultType="Order">
+        select o.*,p.product_name,p.price
+        from tb_order o
+        left join product p
+        on o.goods_id=p.product_id
+        where o.user_id=#{user_id} and product_name like "%"#{product_name}"%"
+    </select>
 </mapper>
 

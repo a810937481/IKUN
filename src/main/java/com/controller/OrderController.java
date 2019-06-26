@@ -36,4 +36,14 @@ public class OrderController {
             return "error.html";
     }
 
+    @RequestMapping("/queryorder")
+    public String query(HttpServletRequest request,String product_name,Model model)
+    {
+        User user= (User) request.getSession().getAttribute("user");
+        int id = user.getUser_id();
+        List<Order> orders = orderService.queryProduct_name(product_name, id);
+        model.addAttribute("orders", orders);
+        return "/myorder";
+    }
+
 }

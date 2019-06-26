@@ -45,4 +45,9 @@ public class OrderServiceImpl implements OrderService{
     public int delOrder(int order_id) {
         return orderMapper.delOrder(order_id);
     }
+
+    @Override
+    public List<Order> queryProduct_name(String product_name, int user_id) {
+        return orderMapper.queryByProduct_name(product_name, user_id);
+    }
 }
