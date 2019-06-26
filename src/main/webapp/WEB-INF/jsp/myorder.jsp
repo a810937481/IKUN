@@ -30,7 +30,7 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <form class="form-horizontal" style="border: 5px solid lightblue;text-align: center">
+            <form class="form-horizontal" style="border: 5px solid lightblue;text-align: center" action="${ctx}/queryorder">
                 <fieldset>
                     <div id="legend">
                         <legend>订单查询</legend>
@@ -53,7 +53,7 @@
                         <!-- Text input-->
                         <label class="control-label" for="input01">搜索关键字:</label>
                         <div class="controls">
-                            <input class="input-xlarge" type="text" placeholder="在此键入关键字">
+                            <input class="input-xlarge" type="text" placeholder="在此键入关键字" name="product_name">
                             <p class="help-block"></p>
                         </div>
                         <button type="submit" class="btn btn-secondary">搜索</button>

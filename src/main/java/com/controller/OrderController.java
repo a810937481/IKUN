@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -27,10 +28,15 @@ public class OrderController {
     }
 
     @RequestMapping("/delorder/{id}")
-    public String doDel(@PathVariable(value = "id") int id,Model model) {
+    @ResponseBody
+    public String doDel(@PathVariable(value = "id") int id,Model model,HttpServletRequest request) {
         int row = orderService.delOrder(id);
         if (row > 0) {
-            return "myorder";
+            User user= (User) request.getSession().getAttribute("user");
+            int uid = user.getUser_id();
+            List<Order> orders=orderService.queryMyOrder(id);
+            model.addAttribute("orders", orders);
+            return "/myorder";
         }
         else
             return "error.html";
