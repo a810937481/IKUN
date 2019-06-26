@@ -6,8 +6,11 @@ import java.util.List;
 import com.entity.Company;
 import com.dao.CompanyMapper;
 import com.service.CompanyService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
+
 public class CompanyServiceImpl implements CompanyService{
 
     @Resource

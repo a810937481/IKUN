@@ -16,5 +16,7 @@ public interface OrderMapper {
 
     int updateByPrimaryKeySelective(@Param("order") Order order);
 
-    List<Order> queryMyOrder(int id);
+    List<Order> queryMyOrder(@Param("user_id") int user_id);
+
+    int delOrder(@Param("order_id") int order_id);
 }

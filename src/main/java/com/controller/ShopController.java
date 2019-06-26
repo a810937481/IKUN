@@ -1,10 +1,8 @@
 package com.controller;
 
 import com.entity.Order;
-import com.entity.OrderInfo;
 import com.entity.Product;
 import com.entity.User;
-import com.service.OrderInfoService;
 import com.service.OrderService;
 import com.service.ProductService;
 import com.utils.OrderNumberUtil;
@@ -23,8 +21,6 @@ public class ShopController {
     private ProductService productService;
     @Autowired
     private OrderService orderService;
-    @Autowired
-    private OrderInfoService orderInfoService;
 
     @RequestMapping("/query")
     public ModelAndView doQuery(String product_name,ModelAndView mav) {
@@ -45,7 +41,7 @@ public class ShopController {
 
 
     @RequestMapping("/doShop")
-    public String doSubmit(HttpServletRequest request,List<Product> products,String telephone,String note,String name) {
+    public String doSubmit(HttpServletRequest request,int product_id,String telephone,String note,String name) {
         //提交到后台商家或者管理员
 
         //用户订单增加
@@ -57,25 +53,12 @@ public class ShopController {
         order.setTelephone(telephone);
         order.setName(name);
         order.setNote(note);
+        order.setGoods_id(product_id);
         int row=orderService.insert(order);
-        System.out.println(order.getUser_id());//返回一个自动生成id的值
-
-        OrderInfo orderInfo = new OrderInfo();
-        orderInfo.setOfOrder(order.getOrder_id());
-        int size = products.size();//获得数组的长度，并设置产品id
-        if (size==1) {
-            orderInfo.setGoods(products.get(0).getProduct_id());
-            orderInfoService.insert(orderInfo);
-        } else if (size > 1) {
-            for (Product product : products) {
-                orderInfo.setGoods(product.getProduct_id());
-                orderInfoService.insert(orderInfo);
-            }
-        } else {
-            int i = 1 / 0;//事务管理并弹出错误
-            return "error.html";
-        }
-        return "购买成功或失败";
+        if (row > 0) {
+            return "";
+        }else
+            return "";
     }
 
 }

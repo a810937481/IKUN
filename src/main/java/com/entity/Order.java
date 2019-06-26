@@ -10,6 +10,9 @@ public class Order {
     private String note;
     private String telephone;
     private String name;
+    private Integer goods_id;
+    private String product_name;
+    private Double price;
 
     public Order() {
     }
@@ -76,6 +79,30 @@ public class Order {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getGoods_id() {
+        return goods_id;
+    }
+
+    public void setGoods_id(Integer goods_id) {
+        this.goods_id = goods_id;
+    }
+
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     @Override

@@ -76,80 +76,91 @@
                         订单时间
                     </th>
                     <th>
+                        订单价格
+                    </th>
+                    <th>
                         订单状态
                     </th>
                 </tr>
-                <c:forEach var="orders" items="${orders}">
+                <c:forEach var="order" items="${orders}">
                     <c:choose>
-                    <c:when test="orders.state==2">
+                    <c:when test="${order.status==2}">
                 <tr>
                     <td>
-                        ${orders.number}
+                        ${order.number}
                     </td>
                     <td>
-                        ${orderInfo.product_name}
+                        ${order.product_name}
                     </td>
                     <td>
-                        ${orders.create_time}
+                        ${order.createTime}
+                    </td>
+                    <td>
+                            ${order.price}
                     </td>
                     <td>
                         完成&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="btn btn-info">查看</a>
-                        <a class="btn btn-dark">删除</a>
+                        <a class="btn btn-dark" href="${ctx}/delorder/${order.order_id}">删除</a>
                     </td>
                 </tr>
                     </c:when>
-                        <c:when test="orders.state==1">
+                        <c:when test="${order.status==1}">
                             <tr class="table-active">
                                 <td>
-                                        ${orders.number}
+                                        ${order.number}
                                 </td>
                                 <td>
-                                        ${orderInfo.product_name}
+                                        ${order.product_name}
                                 </td>
                                 <td>
-                                        ${orders.create_time}
+                                        ${order.createTime}
+                                </td>
+                                <td>
+                                        ${order.price}
                                 </td>
                                 <td>
                                     已支付等待发货&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a class="btn btn-info">查看</a>
-                                    <a class="btn btn-dark">删除</a>
+                                    <a class="btn btn-dark" href="${ctx}/delorder/${order.order_id}">删除</a>
                                 </td>
                             </tr>
                         </c:when>
-                        <c:when test="orders.state==0">
+                        <c:when test="${order.status==0}">
                             <tr class="table-warning">
                                 <td>
-                                        ${orders.number}
+                                        ${order.number}
                                 </td>
                                 <td>
-                                        ${orderInfo.product_name}
+                                        ${order.product_name}
                                 </td>
                                 <td>
-                                        ${orders.create_time}
+                                        ${order.createTime}
+                                </td>
+                                <td>
+                                        ${order.price}
                                 </td>
                                 <td>
                                     未支付&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a class="btn btn-info">查看</a>
-                                    <a class="btn btn-dark">删除</a>
+                                    <a class="btn btn-dark" href="${ctx}/delorder/${order.order_id}">删除</a>
                                 </td>
                             </tr>
                         </c:when>
                         <c:otherwise>
                             <tr class="table-danger">
                                 <td>
-                                        ${orders.number}
+                                        ${order.number}
                                 </td>
                                 <td>
-                                        ${orderInfo.product_name}
+                                        ${order.product_name}
                                 </td>
                                 <td>
-                                        ${orders.create_time}
+                                        ${order.createTime}
+                                </td>
+                                <td>
+                                        ${order.price}
                                 </td>
                                 <td>
                                     退款或取消&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a class="btn btn-info">查看</a>
-                                    <a class="btn btn-dark">删除</a>
+                                    <a class="btn btn-dark" href="${ctx}/delorder/${order.order_id}">删除</a>
                                 </td>
                             </tr>
                         </c:otherwise>

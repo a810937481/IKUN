@@ -6,8 +6,10 @@ import java.util.List;
 import com.entity.Product;
 import com.dao.ProductMapper;
 import com.service.ProductService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ProductServiceImpl implements ProductService{
 
     @Resource

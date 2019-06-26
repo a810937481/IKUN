@@ -6,8 +6,11 @@ import java.util.List;
 import com.entity.Order;
 import com.dao.OrderMapper;
 import com.service.OrderService;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
+
 public class OrderServiceImpl implements OrderService{
 
     @Resource
@@ -36,5 +39,10 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public List<Order> queryMyOrder(int id) {
         return orderMapper.queryMyOrder(id);
+    }
+
+    @Override
+    public int delOrder(int order_id) {
+        return orderMapper.delOrder(order_id);
     }
 }

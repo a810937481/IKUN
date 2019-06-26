@@ -1,12 +1,12 @@
 package com.controller;
 
 import com.entity.Order;
-import com.entity.OrderInfo;
 import com.entity.User;
-import com.service.OrderInfoService;
 import com.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,24 +16,24 @@ import java.util.List;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-    @Autowired
-    private OrderInfoService orderInfoService;
 
     @RequestMapping("/myorder")
-    public String myOrder(HttpServletRequest request) {
+    public String myOrder(HttpServletRequest request, Model model) {
         User user= (User) request.getSession().getAttribute("user");
         int id = user.getUser_id();
         List<Order> orders=orderService.queryMyOrder(id);
-        int size = orders.size();
-        if (size == 0) {
-            return "myorder";
-        } else if (size == 1) {
-            OrderInfo orderInfo = orderInfoService.queryGoods(orders.get(0).getOrder_id());
-        } else if (size > 1) {
-            OrderInfo orderInfo = orderInfoService.queryGoods(orders.get(0).getOrder_id());
-            orderInfo.setProduct_name(orderInfo.getProduct_name()+"等");
-        }
+        model.addAttribute("orders", orders);
         return "myorder";
+    }
+
+    @RequestMapping("/delorder/{id}")
+    public String doDel(@PathVariable(value = "id") int id,Model model) {
+        int row = orderService.delOrder(id);
+        if (row > 0) {
+            return "myorder";
+        }
+        else
+            return "error.html";
     }
 
 }

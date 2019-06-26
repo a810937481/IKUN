@@ -13,4 +13,6 @@ public interface OrderService{
     int updateByPrimaryKeySelective(Order order);
 
     List<Order> queryMyOrder(int id);
+
+    int delOrder(int order_id);
 }

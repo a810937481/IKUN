@@ -28,14 +28,9 @@
                         <li><a href="${ctx}/info">${sessionScope.user.nickname}</a></li>
                     </c:otherwise>
                 </c:choose>
+                <li><a href="${ctx}/index">前往首页</a></li>
                 <li><a>客服中心</a></li>
-                <li><a>我的逍遥游</a>
-                    <ul>
-                        <li><a href="${ctx}/myorder">我的订单</a></li>
-                        <li><a>我的钱包</a></li>
-                        <li><a>我的优惠卷</a></li>
-                        <li><a>我的收藏</a></li>
-                    </ul>
+                <li><a href="${ctx}/myorder">我的订单</a></li>
                 </li>
                 <li><a>我的信息</a>
                     <ul>

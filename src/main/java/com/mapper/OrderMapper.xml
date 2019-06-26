@@ -21,7 +21,7 @@
 
     <!--auto generated Code-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="order.order_id" parameterType="Order">
-        INSERT INTO order (
+        INSERT INTO tb_order (
             `number`,
             user_id,
             `status`,
@@ -40,7 +40,7 @@
 
     <!--auto generated Code-->
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="order.order_id">
-        INSERT INTO order
+        INSERT INTO tb_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="order.order_id!=null"> order_id,</if>
             <if test="order.number!=null"> `number`,</if>
@@ -65,7 +65,7 @@
 
     <!--auto generated Code-->
     <insert id="insertList">
-        INSERT INTO order (
+        INSERT INTO tb_order (
             order_id,
             `number`,
             user_id,
@@ -85,7 +85,7 @@
 
     <!--auto generated Code-->
     <update id="updateByPrimaryKeySelective">
-        UPDATE order
+        UPDATE tb_order
         <set>
             <if test="order.number != null"> `number`= #{order.number,jdbcType=VARCHAR},</if>
             <if test="order.user_id != null"> user_id= #{order.user_id,jdbcType=INTEGER},</if>
@@ -101,9 +101,23 @@
         <result property="createTime" column="create_time"/>
         <result property="status" column="status"/>
         <result property="user_id" column="user_id"/>
+        <result property="name" column="name"/>
+        <result property="note" column="note"/>
+        <result property="telephone" column="telephone"/>
+        <result property="product_name" column="product_name"/>
+        <result property="goods_id" column="goods_id"/>
+        <result property="price" column="price"/>
     </resultMap>
     <select id="queryMyOrder" parameterType="integer" resultMap="myOrderList">
-        select * from "order" where user_id=${id}
+        select o.*,p.product_name,p.price
+        from tb_order o
+        left join product p
+        on o.goods_id=p.product_id
+        where o.user_id=#{user_id}
     </select>
+
+    <delete id="delOrder" parameterType="integer">
+        delete from tb_order where order_id=#{order_id}
+    </delete>
 </mapper>
 

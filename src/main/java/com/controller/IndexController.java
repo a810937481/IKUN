@@ -17,7 +17,7 @@ public class IndexController {
 
     @RequestMapping("/index")
     public String toIndex() {
-        return "/index";
+        return "index";
     }
 
     @RequestMapping("/quit")
@@ -26,7 +26,7 @@ public class IndexController {
         if (session != null) {
             session.invalidate();
         }
-        return "/index";
+        return "index";
     }
 
 }
