@@ -15,4 +15,6 @@ public interface OrderMapper {
     int insertList(@Param("orders") List<Order> orders);
 
     int updateByPrimaryKeySelective(@Param("order") Order order);
+
+    List<Order> queryMyOrder(int id);
 }

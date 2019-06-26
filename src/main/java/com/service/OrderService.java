@@ -11,4 +11,6 @@ public interface OrderService{
     int insertList(List<Order> orders);
 
     int updateByPrimaryKeySelective(Order order);
+
+    List<Order> queryMyOrder(int id);
 }

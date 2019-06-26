@@ -31,7 +31,7 @@
                 <li><a>客服中心</a></li>
                 <li><a>我的逍遥游</a>
                     <ul>
-                        <li><a>我的订单</a></li>
+                        <li><a href="${ctx}/myorder">我的订单</a></li>
                         <li><a>我的钱包</a></li>
                         <li><a>我的优惠卷</a></li>
                         <li><a>我的收藏</a></li>

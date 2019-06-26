@@ -32,4 +32,9 @@ public class OrderServiceImpl implements OrderService{
     public int updateByPrimaryKeySelective(Order order){
         return orderMapper.updateByPrimaryKeySelective(order);
     }
+
+    @Override
+    public List<Order> queryMyOrder(int id) {
+        return orderMapper.queryMyOrder(id);
+    }
 }

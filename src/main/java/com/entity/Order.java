@@ -6,8 +6,10 @@ public class Order {
     private String number;//订单编号
     private Integer user_id;//消费者
     private Timestamp createTime;//生成时间
-    private Integer product_id;//商品信息 多表查询查找product的id （提供商）
     private Integer status;//订单状态 0待支付，1已支付未发货，2完成，3退款，4关闭（退款结束后或者有争议或者取消）
+    private String note;
+    private String telephone;
+    private String name;
 
     public Order() {
     }
@@ -52,12 +54,28 @@ public class Order {
         this.status = status;
     }
 
-    public Integer getProduct_id() {
-        return product_id;
+    public String getNote() {
+        return note;
     }
 
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -67,8 +85,10 @@ public class Order {
                 ", number='" + number + '\'' +
                 ", user_id=" + user_id +
                 ", createTime=" + createTime +
-                ", product_id=" + product_id +
                 ", status=" + status +
+                ", note='" + note + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }
