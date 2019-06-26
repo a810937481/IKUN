@@ -8,8 +8,6 @@ import com.entity.Order;
 
 @Mapper
 public interface OrderMapper {
-    int insert(@Param("order") Order order);
-
     int insertSelective(@Param("order") Order order);
 
     int insertList(@Param("orders") List<Order> orders);
@@ -21,4 +19,6 @@ public interface OrderMapper {
     int delOrder(@Param("order_id") int order_id);
 
     List<Order> queryByProduct_name(@Param("product_name") String product_name,@Param("user_id") int user_id);
+
+    int insert(Order order);
 }

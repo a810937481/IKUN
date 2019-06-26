@@ -12,6 +12,19 @@
     <link rel="stylesheet" href="${ctx}/static/bootstrap/bootstrap.min.css">
     <script src="${ctx}/static/js/jquery-3.3.1.min.js"></script>
     <script src="${ctx}/static/bootstrap/bootstrap.min.js"></script>
+
+    <style>
+        body{
+            background: url("${ctx}/static/img/searchbackground.png") no-repeat center 0;
+        }
+    </style>
+
+    <script>
+        <c:if test="${msg}!=null">
+        alert(${msg});
+        </c:if>
+    </script>
+
 </head>
 <body>
 
@@ -21,6 +34,16 @@
                     <%@include file="navigation.jsp"%>
                 </div>
             </div>
+
+    <header class="htmleaf-header">
+        <!--搜索框-->
+        <div style="width:530px;margin:0 auto;">
+            <form name="query" id="query" action="${ctx}/query" method=post>
+                <input id="product_name" name="product_name" type="text" class="form-control" placeholder="Search" style="border-color: #1e7e34;">
+                <button type="submit" class="btn btn-secondary" id="querybutton" style="border-color: #1e7e34;background-color: #1e7e34;margin-top: -39px;margin-left: 471px ">搜索</button>
+            </form>
+        </div>
+    </header>
 
     <div class="row">
         <div class="col-md-3">

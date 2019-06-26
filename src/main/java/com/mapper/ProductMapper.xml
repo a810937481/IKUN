@@ -111,7 +111,7 @@
         where p.company_id=c.company_id and p.product_name like contact('%','${product_name}','%')
     </select>
 
-    <select id="queryByProduct_id" parameterType="Integer" resultType="Product">
+    <select id="queryByProduct_id" parameterType="Integer" resultType="com.entity.Product">
         select * from product where product_id=#{id}
     </select>
 

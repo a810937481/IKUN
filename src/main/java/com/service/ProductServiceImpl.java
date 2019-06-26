@@ -47,7 +47,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product queryByProduct_id(int id) {
-        return null;
+        return productMapper.queryByProduct_id(id);
     }
 
 

@@ -17,6 +17,12 @@
     <!--logo-->
     <link rel="stylesheet" href="${ctx}/static/css/logo.css">
 
+    <style>
+        body{
+            background: url("${ctx}/static/img/indexbackground.png") no-repeat center 0;
+        }
+    </style>
+
     <%--拦截权限后提示--%>
     <script>
         <c:if test="${msg}!=null">
@@ -38,7 +44,7 @@
     </div>
 </div>
 <div id="logo">
-    <img src="${ctx}/static/img/logo/logo.jpg" height="150" width="200" />
+    <img src="${ctx}/static/img/logo/logo.png" height="150" width="200" />
 </div>
 <div class="htmleaf-container">
     <header class="htmleaf-header">
@@ -46,7 +52,7 @@
         <div style="width:530px;margin:0 auto;">
             <form name="query" id="query" action="${ctx}/query" method=post>
                 <input id="product_name" name="product_name" type="text" class="form-control" placeholder="Search" style="border-color: #1e7e34;">
-                <button type="submit" class="btn btn-secondary" id="querybutton" style="border-color: #1e7e34;background-color: #1e7e34;margin-top: -39px;margin-left: 470.5px ">搜索</button>
+                <button type="submit" class="btn btn-secondary" id="querybutton" style="border-color: #1e7e34;background-color: #1e7e34;margin-top: -39px;margin-left: 471px ">搜索</button>
             </form>
         </div>
     </header>

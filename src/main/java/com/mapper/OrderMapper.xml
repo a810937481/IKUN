@@ -20,25 +20,6 @@
     </sql>
 
     <!--auto generated Code-->
-    <insert id="insert" useGeneratedKeys="true" keyProperty="order.order_id" parameterType="Order">
-        INSERT INTO tb_order (
-            `number`,
-            user_id,
-            `status`,
-            note,
-            telephone,
-            name
-        ) VALUES (
-            #{order.number,jdbcType=VARCHAR},
-            #{order.user_id,jdbcType=INTEGER},
-            #{order.status,jdbcType=INTEGER},
-            #{order.note} ,
-            #{order.telephone} ,
-            #{order.name}
-        )
-    </insert>
-
-    <!--auto generated Code-->
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="order.order_id">
         INSERT INTO tb_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -127,5 +108,9 @@
         on o.goods_id=p.product_id
         where o.user_id=#{user_id} and product_name like "%"#{product_name}"%"
     </select>
+
+    <insert id="insert" parameterType="com.entity.Order">
+        insert into tb_order(number,user_id,status,goods_id) values (#{number},#{user_id},#{status},#{goods_id})
+    </insert>
 </mapper>
 

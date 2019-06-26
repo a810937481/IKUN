@@ -25,7 +25,7 @@ public class loginInterceptor implements HandlerInterceptor {
             User user = (User) request.getSession().getAttribute("user");
             if (user == null) {
                 request.setAttribute("msg", "请先登录再访问网站");
-                request.getRequestDispatcher("/register").forward(request, response);
+                request.getRequestDispatcher("/loginAndRegister").forward(request, response);
                 return flag;
             } else {
                 flag = true;

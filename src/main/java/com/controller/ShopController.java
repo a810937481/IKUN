@@ -32,16 +32,16 @@ public class ShopController {
     }
 
     @RequestMapping(value = "/queryById", method = RequestMethod.GET)
-    public ModelAndView queryById(@PathVariable("id") Integer id) {
+    public ModelAndView queryById(Integer id) {
         Product product=productService.queryByProduct_id(id);//jstl取product的值
-        ModelAndView mav = new ModelAndView("详情/结账页面");//有付款按钮的界面
+        ModelAndView mav = new ModelAndView("product");//有付款按钮的界面
         mav.addObject("product", product);
         return mav;
     }
 
 
     @RequestMapping("/doShop")
-    public String doSubmit(HttpServletRequest request,int product_id,String telephone,String note,String name) {
+    public String doSubmit(HttpServletRequest request,Integer product_id) {
         //提交到后台商家或者管理员
 
         //用户订单增加
@@ -49,16 +49,13 @@ public class ShopController {
         Order order = new Order();
         order.setNumber(OrderNumberUtil.getInstance().get());//订单号
         order.setUser_id(user.getUser_id());
-        order.setStatus(1);//0待支付，1已支付未发货，2完成，3退款，4关闭（退款结束后或者有争议或者取消）
-        order.setTelephone(telephone);
-        order.setName(name);
-        order.setNote(note);
+        order.setStatus(0);//0待支付，1已支付未发货，2完成，3退款，4关闭（退款结束后或者有争议或者取消）
         order.setGoods_id(product_id);
         int row=orderService.insert(order);
         if (row > 0) {
-            return "";
+            return "myorder";
         }else
-            return "";
+            return "product";
     }
 
 }
