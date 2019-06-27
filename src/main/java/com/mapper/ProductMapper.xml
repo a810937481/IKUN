@@ -116,7 +116,7 @@
     </select>
 
     <select id="queryProductByName" parameterType="String" resultMap="product_name_list">
-        select * from product where product_name=#{product_name}
+        select * from product where product_name like "%"#{product_name}"%"
     </select>
 
     <resultMap id="product_name_list" type="java.util.Map">
