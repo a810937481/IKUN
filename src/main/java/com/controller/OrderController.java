@@ -5,7 +5,6 @@ import com.entity.User;
 import com.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,12 +17,18 @@ public class OrderController {
     private OrderService orderService;
 
     @RequestMapping("/myorder")
-    public String myOrder(HttpServletRequest request, Model model) {
-        User user= (User) request.getSession().getAttribute("user");
-        int id = user.getUser_id();
-        List<Order> orders=orderService.queryMyOrder(id);
-        model.addAttribute("orders", orders);
+    public String toOrder() {
         return "myorder";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/myorder.do", method = RequestMethod.POST)
+    public List<Order> getOrder(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        int user_id = user.getUser_id();
+        List<Order> orders = orderService.queryMyOrder(user_id);
+        request.getSession().setAttribute("order_count",orders.size());
+        return orders;
     }
 
     @RequestMapping(value = "/delorder")
@@ -37,7 +42,7 @@ public class OrderController {
         }
     }
 
-    @RequestMapping("/queryorder")
+/*    @RequestMapping("/queryorder")
     public ModelAndView query(HttpServletRequest request,String product_name,ModelAndView mav)
     {
         User user= (User) request.getSession().getAttribute("user");
@@ -46,6 +51,6 @@ public class OrderController {
         mav.setViewName("myorder");
         mav.addObject("orders", orders);
         return mav;
-    }
+    }*/
 
 }

@@ -75,7 +75,7 @@
                                 success:function (data) {
                                     console.log(data);
                                     if ("success" == data) {
-                                        window.location.href = "index.jsp";
+                                        window.location.href = "${ctx}/center";
                                     } else if ("fail" == data) {
                                         alert("账号不存在或密码错误");
                                     } else {

@@ -63,4 +63,9 @@ public class UserServiceImpl implements UserService{
         Integer result = userMapper.updateUser(user);
         return result;
     }
+
+    @Override
+    public int updatePassword(int id, String password) {
+        return userMapper.updatepassword(id,password);
+    }
 }

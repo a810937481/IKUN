@@ -35,8 +35,9 @@ public class loginAndRegisterController {
         return "/loginAndRegister";
     }
 
-    @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public String register(String newUsername,String newPassword,String phoneNumber,String email){
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String register(@RequestParam("newUsername") String newUsername, @RequestParam("newPassword") String newPassword, @RequestParam("phoneNumber") String phoneNumber, @RequestParam("email") String email, HttpServletRequest request) {
         User user = new User();
         user.setUsername(newUsername);
         user.setPassword(newPassword);
@@ -44,7 +45,9 @@ public class loginAndRegisterController {
         user.setPhone(phoneNumber);
         user.setEmail(email);
         Integer i = userService.register(user);
-        return "/loginAndRegister";
+        request.getSession().setAttribute("user",user);
+        request.getSession().setAttribute("order_count",0);
+        return "center";
     }
 
     @RequestMapping("/login")
@@ -59,12 +62,11 @@ public class loginAndRegisterController {
             if (user1.getPassword().equals(user.getPassword())) {
                 request.getSession().setAttribute("user",user1);
                 List<Order> orders = orderService.queryMyOrder(user1.getUser_id());
-                request.getSession().setAttribute("order_account",orders.size());
+                request.getSession().setAttribute("order_count",orders.size());
                 return "success";
             }
         }
         return "fail";
     }
-
 
 }

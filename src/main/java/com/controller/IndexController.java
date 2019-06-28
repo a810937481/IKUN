@@ -29,4 +29,9 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping("/center")
+    public String tocenter() {
+        return "center";
+    }
+
 }

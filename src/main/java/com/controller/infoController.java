@@ -4,9 +4,7 @@ import com.entity.User;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -37,4 +35,24 @@ public class infoController {
 
     }
 
+    @RequestMapping(value = "/updatepassword",method = RequestMethod.POST)
+    @ResponseBody
+    public String updatepass(@RequestParam("password") String password, @RequestParam("newpassword") String newpassword, HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        int id = user.getUser_id();
+/*        System.out.println(password);
+        System.out.println(newpassword);
+        System.out.println("user:"+user.getPassword());*/
+        System.out.println();
+        if (!user.getPassword().equals(password) ) {
+            return "wrong";
+        }
+        int row = userService.updatePassword(id, newpassword);
+        if (row > 0) {
+            user.setPassword(newpassword);
+            request.getSession().setAttribute("user",user);
+            return "success";
+        }else
+            return "fail";
+    }
 }

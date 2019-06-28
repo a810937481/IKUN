@@ -7,43 +7,55 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<link rel="stylesheet" href="${ctx}/static/bootstrap/css/bootstrap.css">
 <script src="${ctx}/static/js/jquery-3.3.1.min.js"></script>
-<script src="${ctx}/static/bootstrap/js/bootstrap.js"></script>
-<link rel="stylesheet" href="${ctx}/static/css/mainDirect.css">
-<link rel="stylesheet" href="${ctx}/static/css/mainborder.css">
+<script src="${ctx}/static/js/jquery.ss.menu.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-<div class="row">
-    <div class="col-md-6">
-    </div>
-    <div class="col-md-6" id="mianDirect">
-        <div id="nav">
-            <ul>
-                <c:choose>
-                    <c:when test="${empty sessionScope.user}">
-                    <li><a href="${ctx}/loginAndRegister">你好，请登录</a></li>
-                    <li><a href="${ctx}/loginAndRegister">免费注册</a>${sessionScope.user}</li>
-                    </c:when>
-                    <c:otherwise>
-                        <li><a href="${ctx}/info">${sessionScope.user.nickname}</a></li>
-                    </c:otherwise>
-                </c:choose>
-                <li><a href="${ctx}/index">前往首页</a></li>
-                <li><a>客服中心</a></li>
-                <li><a href="${ctx}/myorder">我的订单</a></li>
-                </li>
-                <li><a>我的信息</a>
-                    <ul>
-                        <li><a href="${ctx}/info">个人资料</a></li>
-                        <c:if test="${!empty sessionScope.user}">
-                        <li><a href="${ctx}/quit">退出登录</a></li>
-                        </c:if>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
+<!--ssMenu CSS-->
+<link rel="stylesheet" href="${ctx}/static/css/ss-menu.css">
 
-<div id="main-border" >
-</div>
+<!--Start Side Sticky Menu-->
+
+<nav class="ss-menu ">
+    <ul>
+        <li><a href="${ctx}/center"><i class="fa fa-user-o"></i>用户:${sessionScope.user.nickname}</a></li>
+        <li><a href="${ctx}/myorder"> <span class="ss-badge">${sessionScope.order_count}</span> <i class="fa fa-bar-chart"></i> 我的订单 </a></li>
+        <li><a href="#1"><i class="fa fa-heartbeat"></i> 新鲜去处</a></li>
+        <li><a href="${ctx}/info"><i class="fa fa-bank"></i> 个人信息</a></li>
+        <li><a href="#1"><i class="fa fa-credit-card"></i> 支付方式</a></li>
+        <li><a href="#1"><i class="fa fa-bookmark-o"></i> 我的收藏 </a></li>
+        <li><a href="#1"><i class="fa fa-car"></i> 提交工单 </a></li>
+        <li><a href="#1"><i class="fa fa-briefcase"></i> 关于我们</a></li>
+        <li><a href="${ctx}/quit"><i class="fa fa-location-arrow"></i> 退出登录</a></li>
+    </ul>
+</nav>
+<!--End Side Sticky Menu-->
+<script>
+
+        $(".ss-menu").ssMenu({
+            theme: "teal",
+        });
+
+</script>
+<script>
+    $(function(){
+        var ssMenu = $(".ss-menu");
+        var theme = $(".theme-picker").find("span");
+
+        $(theme).click(function(y){
+
+            y = $(this).attr("class");
+
+            $(ssMenu).removeClass().addClass("ss-menu " +y); //Aaah what a nice
+
+
+        });
+
+        $(".set-default").click(function(){
+            $(ssMenu).removeClass().addClass("ss-menu default");
+
+        });
+
+    });
+
+</script>

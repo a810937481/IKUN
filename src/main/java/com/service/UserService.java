@@ -19,4 +19,6 @@ public interface UserService{
     int register(User user);
 
     int updateUser(User user);
+
+    int updatePassword(int id, String password);
 }
