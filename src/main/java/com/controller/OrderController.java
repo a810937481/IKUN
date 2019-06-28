@@ -6,9 +6,7 @@ import com.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,19 +26,14 @@ public class OrderController {
         return "myorder";
     }
 
-    @RequestMapping("/delorder/{id}")
-    public ModelAndView doDel(@PathVariable(value = "id") int id, ModelAndView mav, HttpServletRequest request) {
+    @RequestMapping(value = "/delorder")
+    @ResponseBody
+    public String doDel(@RequestParam("id") int id) {
         int row = orderService.delOrder(id);
-        mav.setViewName("myorder");
         if (row > 0) {
-            User user = (User) request.getSession().getAttribute("user");
-            int uid = user.getUser_id();
-            List<Order> orders = orderService.queryMyOrder(id);
-            mav.addObject("orders", orders);
-            return mav;
+            return "success";
         } else {
-            mav.setViewName("error.html");
-            return mav;
+            return "fail";
         }
     }
 

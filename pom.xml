@@ -23,6 +23,14 @@
   </properties>
 
   <dependencies>
+
+    <!-- fastjson阿里巴巴 -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.41</version>
+    </dependency>
+
     <!--Jackson required包-->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>

@@ -13,6 +13,7 @@ public class Order {
     private Integer goods_id;
     private String product_name;
     private Double price;
+    private String company_name;
 
     public Order() {
     }
@@ -97,14 +98,6 @@ public class Order {
         this.product_name = product_name;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
     @Override
     public String toString() {
         return "Order{" +
@@ -116,6 +109,27 @@ public class Order {
                 ", note='" + note + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", name='" + name + '\'' +
+                ", goods_id=" + goods_id +
+                ", product_name='" + product_name + '\'' +
+                ", price=" + price +
+                ", company_name='" + company_name + '\'' +
                 '}';
     }
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
 }

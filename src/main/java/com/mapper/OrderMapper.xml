@@ -88,13 +88,15 @@
         <result property="product_name" column="product_name"/>
         <result property="goods_id" column="goods_id"/>
         <result property="price" column="price"/>
+        <result property="product_name" column="product_name"/>
+
     </resultMap>
     <select id="queryMyOrder" parameterType="integer" resultMap="myOrderList">
-        select o.*,p.product_name,p.price
-        from tb_order o
+        select o.*,p.product_name,p.price,p.product_id,c.company_name
+        from (tb_order o,company c)
         left join product p
         on o.goods_id=p.product_id
-        where o.user_id=#{user_id}
+        where o.user_id=#{user_id} and p.company_id=c.company_id
     </select>
 
     <delete id="delOrder" parameterType="integer">
