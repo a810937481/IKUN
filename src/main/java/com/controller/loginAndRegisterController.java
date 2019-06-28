@@ -1,18 +1,23 @@
 package com.controller;
 
+import com.entity.Order;
 import com.entity.User;
+import com.service.OrderService;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class loginAndRegisterController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrderService orderService;
 
     @RequestMapping("/usercheck")
     @ResponseBody
@@ -53,6 +58,8 @@ public class loginAndRegisterController {
 
             if (user1.getPassword().equals(user.getPassword())) {
                 request.getSession().setAttribute("user",user1);
+                List<Order> orders = orderService.queryMyOrder(user1.getUser_id());
+                request.getSession().setAttribute("order_account",orders.size());
                 return "success";
             }
         }
