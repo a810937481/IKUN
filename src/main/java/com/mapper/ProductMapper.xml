@@ -93,7 +93,7 @@
         WHERE product_id = #{product.product_id,jdbcType=INTEGER}
     </update>
 
-    <resultMap id="product_list" type="java.util.Map">
+    <resultMap id="product_list" type="Product">
         <id property="product_id" column="product_id"/>
         <result property="product_name" column="product_name"/>
         <result property="product_info" column="product_info"/>
@@ -127,6 +127,17 @@
     <result property="price" column="price"/>
     <result property="image" column="image"/>
     </resultMap>
+
+    <select id="findAllproduct_id" resultType="integer">
+        select product_id from product
+    </select>
+
+    <select id="findbyProduct_ids" resultMap="product_list">
+        select * from product where product_id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
 
 </mapper>
 

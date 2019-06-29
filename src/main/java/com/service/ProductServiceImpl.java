@@ -50,5 +50,13 @@ public class ProductServiceImpl implements ProductService{
         return productMapper.queryByProduct_id(id);
     }
 
+    @Override
+    public List<Integer> findAllProduct_id() {
+        return productMapper.findAllproduct_id();
+    }
 
+    @Override
+    public List<Product> findByids(List<Integer> ids) {
+        return productMapper.findbyProduct_ids(ids);
+    }
 }

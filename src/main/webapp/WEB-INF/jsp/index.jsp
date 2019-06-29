@@ -30,7 +30,7 @@
                         <a href="${ctx}/center">回到用户中心</a>
                     </c:otherwise>
                 </c:choose>
-                <a href="">查看更多</a>
+                <a href="${ctx}/tofresh">查看更多</a>
                 <a href="" target="_blank">关于我们</a>
             </div>
         </div>

@@ -20,7 +20,7 @@
     <ul>
         <li><a href="${ctx}/center"><i class="fa fa-user-o"></i>用户:${sessionScope.user.nickname}</a></li>
         <li><a href="${ctx}/myorder"> <span class="ss-badge">${sessionScope.order_count}</span> <i class="fa fa-bar-chart"></i> 我的订单 </a></li>
-        <li><a href="#1"><i class="fa fa-heartbeat"></i> 新鲜去处</a></li>
+        <li><a href="${ctx}/tofresh"><i class="fa fa-heartbeat"></i> 新鲜去处</a></li>
         <li><a href="${ctx}/info"><i class="fa fa-bank"></i> 个人信息</a></li>
         <li><a href="#1"><i class="fa fa-credit-card"></i> 支付方式</a></li>
         <li><a href="#1"><i class="fa fa-bookmark-o"></i> 我的收藏 </a></li>

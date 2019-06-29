@@ -26,7 +26,7 @@
         <h1>逍遥游Easy Travel <span>Try Something Different 发现与众不同</span></h1>
         <div class="htmleaf-links">
             <a class="htmleaf-icon icon-htmleaf-home-outline" href="${ctx}/index" title="旅游景点"><span> 旅游景点</span></a>
-            <a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="新鲜去处的推荐" title="来点惊喜" target="_blank"><span> 来点惊喜</span></a>
+            <a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="${ctx}/tofresh" title="来点惊喜"><span> 来点惊喜</span></a>
         </div>
     </header>
     <main class="ss-main">

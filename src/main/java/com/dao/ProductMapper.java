@@ -21,4 +21,8 @@ public interface ProductMapper {
     List<Product> queryProductByName(String product_name);
 
     Product queryByProduct_id(int id);
+
+    List<Integer> findAllproduct_id();
+
+    List<Product> findbyProduct_ids(@Param("ids") List<Integer> ids);
 }

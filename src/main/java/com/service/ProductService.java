@@ -17,4 +17,8 @@ public interface ProductService{
     List<Product> queryByProduct_name(String product_name);
 
     Product queryByProduct_id(int id);
+
+    List<Integer> findAllProduct_id();
+
+    List<Product> findByids(List<Integer> ids);
 }

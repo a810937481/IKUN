@@ -213,7 +213,7 @@
             <nav id="first" class="navbar navbar-default navbar-fixed-top bg-custom" style="margin-left: 0px">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="navbar-brand" href="#" style="font-family: 华文行楷;font-size: 30px">逍遥游</a>
+                        <a class="navbar-brand" href="${ctx}/index" style="font-family: 华文行楷;font-size: 30px">逍遥游</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" style="font-family: 华文行楷;font-size: 25px">登录/注册</a>
