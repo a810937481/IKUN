@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public int updatePassword(int id, String password) {
-        return userMapper.updatepassword(id,password);
+    public List<User> getAllUser() {
+        return userMapper.getAllUser();
     }
 }

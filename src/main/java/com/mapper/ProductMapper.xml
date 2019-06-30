@@ -93,7 +93,7 @@
         WHERE product_id = #{product.product_id,jdbcType=INTEGER}
     </update>
 
-    <resultMap id="product_list" type="Product">
+    <resultMap id="product_list" type="java.util.Map">
         <id property="product_id" column="product_id"/>
         <result property="product_name" column="product_name"/>
         <result property="product_info" column="product_info"/>
@@ -108,7 +108,7 @@
         /*select * from product where product_name like concat('%','${product_name}','%')*/
         select p.product_id,p.product_name,p.product_info,p.company_id,p.price,p.image,c.company_info,c.company_name
         from product p,company c
-        where p.company_id=c.company_id and p.product_name like "%"#{product_name}"%"
+        where p.company_id=c.company_id and p.product_name like contact('%','${product_name}','%')
     </select>
 
     <select id="queryByProduct_id" parameterType="Integer" resultType="com.entity.Product">
@@ -128,16 +128,19 @@
     <result property="image" column="image"/>
     </resultMap>
 
-    <select id="findAllproduct_id" resultType="integer">
-        select product_id from product
+    <select id="allProduct" resultType="com.entity.Product">
+        select * from product
     </select>
 
-    <select id="findbyProduct_ids" resultMap="product_list">
-        select * from product where product_id in
-        <foreach collection="ids" item="id" open="(" close=")" separator=",">
-            #{id}
-        </foreach>
-    </select>
+    <update id="updateProuduct">
+        update product set
+        product_name=#{product_name},product_info=#{product_info},price=#{price}
+        where product_id=#{product_id}
+    </update>
+
+    <insert id="insertProduct">
+        insert into product(product_id,product_name,product_info,company_id,price) values(#{product_id},#{product_name},#{product_info},#{company_id},#{price});
+    </insert>
 
 </mapper>
 

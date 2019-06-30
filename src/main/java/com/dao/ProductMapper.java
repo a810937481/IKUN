@@ -22,7 +22,9 @@ public interface ProductMapper {
 
     Product queryByProduct_id(int id);
 
-    List<Integer> findAllproduct_id();
+    List<Product> allProduct();
 
-    List<Product> findbyProduct_ids(@Param("ids") List<Integer> ids);
+    int insertProduct(@Param(value = "product_id")Integer product_id,@Param(value = "product_name") String product_name,@Param(value = "product_info")String product_info,@Param(value = "company_id")int company_id,@Param(value = "price")Double price);
+
+    int updateProuduct(@Param(value = "product_id")Integer product_id,@Param(value = "product_name") String product_name,@Param(value = "product_info")String product_info,@Param(value = "price")Double price);
 }

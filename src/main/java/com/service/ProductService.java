@@ -18,7 +18,9 @@ public interface ProductService{
 
     Product queryByProduct_id(int id);
 
-    List<Integer> findAllProduct_id();
+    List<Product> allProduct();
 
-    List<Product> findByids(List<Integer> ids);
+    int updateProduct(int id,String name,String info,Double price);
+
+    int insertProduct(int product_id,String product_name,String product_info,int company_id,Double price);
 }

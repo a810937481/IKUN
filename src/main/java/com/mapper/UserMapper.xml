@@ -87,7 +87,7 @@
         select * from user where username=#{username}
     </select>
 
-    <insert id="addUser" parameterType="com.entity.User" useGeneratedKeys="true" keyProperty="user_id">
+    <insert id="addUser" parameterType="com.entity.User">
         insert into user(username,password,nickname,phone,email) values (#{username},#{password},#{nickname},#{phone},#{email})
     </insert>
 
@@ -97,10 +97,8 @@
         where user_id=#{user_id}
     </update>
 
-    <update id="updatepassword">
-        update user set
-        password=#{password}
-        where user_id=#{user_id}
-    </update>
+    <select id="getAllUser" resultType="com.entity.User">
+        select * from user
+    </select>
 </mapper>
 

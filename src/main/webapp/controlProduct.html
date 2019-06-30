@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>景点管理</title>
+    <link rel="stylesheet" href="static/css/font-awesome.css">
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.css">
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <script src="static/js/jquery.cookie.js"></script>
+    <script src="static/bootstrap/js/bootstrap.js"></script>
+
+    <style>
+        body{
+            background: url("static/img/controlLogin.png") center 0;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            if ($.cookie("ad_name") == null) {
+                    alert("未登录或登录信息过期，请重新登录哦");
+                    window.location.href = "controlLogin.html";
+            }
+            if ($.cookie("ad_power")=="0") {
+                $("#welcome").html("");
+                var welcome = "<a class=\"navbar-brand\" href=\"#\" style=\"font-size: 25px;color: #000000\">欢迎您，最高管理员" + $.cookie("ad_nickname") + "</a>";
+                $("#welcome").append(welcome);
+            }else {
+                $("#welcome").html("");
+                var welcome = "<a class=\"navbar-brand\" href=\"#\" style=\"font-size: 25px;color: #000000\">欢迎您，普通管理员"+ $.cookie("ad_nickname") +"</a>";
+                $("#welcome").append(welcome);
+            }
+
+            $.ajax({
+                url: "/travel_war_exploded/getAllProduct",
+                type:"get",
+                success: function (data) {
+                    $("#tbody").html("");
+                    $.each(data, function (key,val) {
+                        var product_id = val.product_id;
+                        var udbtn = "<button id=\"upbtn\" type=\"button\" class=\"btn btn-lg\" style=\"background-color: transparent;border-color: #000000;font-size:10px;color: #000000;\" data-toggle=\"modal\" data-target=\"#update\" onclick=showinfo("+ product_id +")>" + "修改" + "</button>";
+                        var dlbtn = "<button id=\"dlbtn\" type=\"button\" class=\"btn btn-lg\" style=\"background-color: transparent;border-color: #000000;font-size:10px;color: #000000;\">" + "删除" + "</button>";
+                        var tbody = "<tr>" + "<td id=\"" +product_id+ "\">" + product_id + "</td>"
+                            + "<td>" + val.product_name + "</td>"
+                            + "<td>" + val.product_info + " </td>"
+                            + "<td>" + val.company_name + "</td>"
+                            + "<td>" + val.price + "</td>"
+                            + "<td>" + udbtn + "</td>"
+                            + "<td>" + dlbtn + "</td>"+ "</tr>";
+                        $("#tbody").append(tbody);
+                    })
+                }
+            })
+
+            })
+        function showinfo(product_id) {
+            $.ajax({
+                url: "/travel_war_exploded/queryProductById?product_id="+product_id,
+                type: "get",
+                success: function (data) {
+                    $("#inputname").html("");
+                    $("#inputinfo").html("");
+                    $("#inputprice").html("");
+                    $("#updatefooter").html("");
+                        var inputname = "<label for=\"product_name\" class=\"col-4 col-form-label\" >"+"景点名称"+"</label>" +
+                            "<div class=\"col-8\" >" +
+                            "<input id=\"product_name\" name=\"product_name\" type=\"text\" required=\"required\" class=\"form-control\" value=\"" + data.product_name + "\">" +
+                            "</div>";
+                        var inputinfo = "<label for=\"product_info\" class=\"col-4 col-form-label\" >"+"景点信息"+"</label>" +
+                            "<div class=\"col-8\" >" +
+                            "<textarea id=\"product_info\" name=\"product_info\" rows=\"5\" required=\"required\" class=\"form-control\">" + data.product_info + "</textarea>" +
+                            "</div>";
+                        var inputprice = "<label for=\"price\" class=\"col-4 col-form-label\" >"+"景点价格"+"</label>" +
+                            "<div class=\"col-8\">" +
+                            "<input id=\"price\" name=\"price\" type=\"text\" required=\"required\" class=\"form-control\" value=\"" + data.price + "\">" +
+                            "</div>";
+                        $("#inputname").append(inputname);
+                        $("#inputinfo").append(inputinfo);
+                        $("#inputprice").append(inputprice);
+                        var name = $("#product_name").val();
+                        var info = $("#product_info").text();
+                        var price = $("#price").val();
+                        var btn = "<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" onclick=\"updateinfo("+product_id+",\'"+name+"\',\'"+info+"\',\'"+price+"\')\">"+"提交修改"+"</button>"
+                        +"<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">"+"关闭"+"</button>";
+                        $("#updatefooter").append(btn);
+                }
+            })
+        }
+
+        function updateinfo(product_id,product_name,product_info,price) {
+            var name = $("#product_name").val();
+            var info = $("#product_info").text();
+            var price = $("#price").val();
+            $.ajax({
+                url:"/travel_war_exploded/updateProduct?product_id="+product_id+"&product_name="+name+"&product_info="+info+"&price="+price,
+                type:"get",
+                success:function (data) {
+                    $("#tbody").html("");
+                    $.each(data, function (key,val) {
+                        var product_id = val.product_id;
+                        var udbtn = "<button id=\"upbtn\" type=\"button\" class=\"btn btn-lg\" style=\"background-color: transparent;border-color: #000000;font-size:10px;color: #000000;\" data-toggle=\"modal\" data-target=\"#update\" onclick=showinfo("+ product_id +")>" + "修改" + "</button>";
+                        var dlbtn = "<button id=\"dlbtn\" type=\"button\" class=\"btn btn-lg\" style=\"background-color: transparent;border-color: #000000;font-size:10px;color: #000000;\">" + "删除" + "</button>";
+                        var tbody = "<tr>" + "<td id=\"" +product_id+ "\">" + product_id + "</td>"
+                            + "<td>" + val.product_name + "</td>"
+                            + "<td>" + val.product_info + " </td>"
+                            + "<td>" + val.company_name + "</td>"
+                            + "<td>" + val.price + "</td>"
+                            + "<td>" + udbtn + "</td>"
+                            + "<td>" + dlbtn + "</td>"+ "</tr>";
+                        $("#tbody").append(tbody);
+                    })
+                }
+            })
+        }
+    </script>
+
+
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-12">
+            <nav id="first" class="navbar navbar-default navbar-fixed-top bg-custom" style="margin-left: 0px">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="#" style="font-size: 25px;color: #000000">逍遥游后台</a>
+                    </li>
+                    <li id="welcome" class="nav-item"></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="controlLogin.html" style="font-size: 20px;color: #000000">返回登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="controlUser.html" style="font-size: 20px;color: #000000">用户后台</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="controlProduct.html" style="font-size: 20px;color: #000000">景点后台</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="controlOrder.html" style="font-size: 20px;color: #000000">订单后台</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-9">
+            <form role="form" style="margin-top: 50px;">
+                <h2>景点列表</h2>
+                <div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>  景点ID  </th>
+                            <th>  景点名称  </th>
+                            <th>  景点信息  </th>
+                            <th>  景点旅游承包商  </th>
+                            <th>  景点价格  </th>
+                            <th>  操作  </th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        </tbody>
+                    </table>
+                </div>
+                <button id="addProduct" type="button" class="form-control" style="background : transparent;width: 10%"><i class="fa fa-plus fa-2x"></i></button>
+            </form>
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+
+    <div class="modal fade" id="update">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+        <div class="modal-header">
+            <h4 class="modal-title">填写信息</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+        <div class="modal-body">
+            <div class="form-group row" id="inputname">
+            </div>
+            <br>
+            <br>
+            <div class="form-group row" id="inputinfo">
+            </div>
+            <br> <br>
+            <br> <br>
+            <br> <br>
+            <div class="form-group row" id="inputprice">
+            </div>
+        </div>
+
+        <div class="modal-footer" id="updatefooter">
+        </div>
+
+        </div>
+    </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class loginInterceptor implements HandlerInterceptor {
     /*忽略不拦截界面*/
-    private static String[] ignore_url = {"/register","/login","error.html","/index","/quit","/usercheck","/loginAndRegister"};
+    private static String[] ignore_url = {"/register","/login","error.html","/index","/test","/totest","/controlLogin.html","controlUser.html","/adLogin","/getAll","/getAllUser","/deleteAdministrators","/addAdministrators","controlProduct.html","controlOrder.html","/getAllProduct","/queryProductById","/updateProduct","/insertProduct"};
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

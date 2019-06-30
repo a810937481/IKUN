@@ -20,5 +20,5 @@ public interface UserService{
 
     int updateUser(User user);
 
-    int updatePassword(int id, String password);
+    List<User> getAllUser();
 }

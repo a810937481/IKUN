@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单管理</title>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.css">
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <script src="static/js/jquery.cookie.js"></script>
+    <script src="static/bootstrap/js/bootstrap.js"></script>
+
+    <style>
+        body{
+            background: url("static/img/controlLogin.png") center 0;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            if ($.cookie("ad_name") == null) {
+                alert("未登录或登录信息过期，请重新登录哦");
+                window.location.href = "controlLogin.html";
+            }
+            if ($.cookie("ad_power")=="0") {
+                $("#welcome").html("");
+                var welcome = "<a class=\"navbar-brand\" href=\"#\" style=\"font-size: 25px;color: #000000\">欢迎您，最高管理员" + $.cookie("ad_nickname") + "</a>";
+                $("#welcome").append(welcome);
+            }else {
+                $("#welcome").html("");
+                var welcome = "<a class=\"navbar-brand\" href=\"#\" style=\"font-size: 25px;color: #000000\">欢迎您，普通管理员"+ $.cookie("ad_nickname") +"</a>";
+                $("#welcome").append(welcome);
+            }
+        })
+    </script>
+
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-12">
+            <nav id="first" class="navbar navbar-default navbar-fixed-top bg-custom" style="margin-left: 0px">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="#" style="font-size: 25px;color: #000000">逍遥游后台</a>
+                    </li>
+                    <li id="welcome" class="nav-item"></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="controlLogin.html" style="font-size: 20px;color: #000000">返回登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="controlUser.html" style="font-size: 20px;color: #000000">用户后台</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="controlProduct.html" style="font-size: 20px;color: #000000">景点后台</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="controlOrder.html" style="font-size: 20px;color: #000000">订单后台</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <form role="form" style="margin-top: 100px;">
+                <h2>订单列表</h2>
+                <div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>  订单ID  </th>
+                            <th>  订单编号  </th>
+                            <th>  订单内容  </th>
+                            <th>  下单用户ID  </th>
+                            <th>  生成时间  </th>
+                            <th>  订单状态  </th>
+                            <th>  操作  </th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

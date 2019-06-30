@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.AdministratorsMapper">
+
+    <select id="getAdministratorsByName" parameterType="String" resultType="com.entity.Administrators">
+        select * from tb_Administrators where ad_name=#{name}
+    </select>
+
+    <insert id="addAdministrators" parameterType="String">
+        insert into tb_Administrators(ad_name,ad_password,ad_nickname) values (#{ad_name},#{ad_password},#{ad_nickname})
+    </insert>
+
+    <select id="getAllAdministrators" resultType="com.entity.Administrators">
+        select * from tb_Administrators
+    </select>
+
+    <delete id="deleteAdministrators" parameterType="Integer">
+        delete from tb_Administrators where ad_id=#{id}
+    </delete>
+
+</mapper>

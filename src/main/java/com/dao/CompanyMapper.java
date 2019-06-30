@@ -15,4 +15,6 @@ public interface CompanyMapper {
     int insertList(@Param("companys") List<Company> companys);
 
     int updateByPrimaryKeySelective(@Param("company") Company company);
+
+    Company queryCompanyById(int id);
 }

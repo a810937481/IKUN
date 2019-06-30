@@ -122,5 +122,10 @@
         </set>
         WHERE company_id = #{company.company_id,jdbcType=INTEGER}
     </update>
+
+    <select id="queryCompanyById" parameterType="Integer" resultType="com.entity.Company">
+        select * from company where company_id =#{id};
+    </select>
+
 </mapper>
 

@@ -51,12 +51,19 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<Integer> findAllProduct_id() {
-        return productMapper.findAllproduct_id();
+    public List<Product> allProduct() {
+        return productMapper.allProduct();
     }
 
     @Override
-    public List<Product> findByids(List<Integer> ids) {
-        return productMapper.findbyProduct_ids(ids);
+    public int updateProduct(int id, String name, String info, Double price) {
+        return productMapper.updateProuduct(id,name,info,price);
     }
+
+    @Override
+    public int insertProduct(int product_id, String product_name, String product_info, int company_id, Double price) {
+        return productMapper.insertProduct(product_id,product_name,product_info,company_id,price);
+    }
+
+
 }

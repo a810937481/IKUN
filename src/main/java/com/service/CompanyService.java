@@ -12,4 +12,5 @@ public interface CompanyService{
 
     int updateByPrimaryKeySelective(Company company);
 
+    Company queryCompanyById(int id);
 }

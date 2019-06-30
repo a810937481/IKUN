@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台用户管理</title>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.css">
+    <script src="static/js/jquery-3.3.1.min.js"></script>
+    <script src="static/js/jquery.cookie.js"></script>
+    <script src="static/bootstrap/js/bootstrap.js"></script>
+
+    <style>
+        body{
+            background: url("static/img/controlLogin.png") center 0;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            if ($.cookie("ad_name")==null){
+                alert("未登录或登录信息过期，请重新登录哦");
+                window.location.href="controlLogin.html";
+            }
+            if ($.cookie("ad_power")=="0"){
+                $("#welcome").html("");
+                var welcome = "<a class=\"navbar-brand\" href=\"#\" style=\"font-size: 25px;color: #000000\">欢迎您，最高管理员"+ $.cookie("ad_nickname") +"</a>";
+                $("#welcome").append(welcome);
+                    $.ajax({
+                        url:"/travel_war_exploded/getAll",
+                        type:"get",
+                        success: function (data) {
+                            // alert(data);
+                            if (data == "failed"){
+                                alert("数据提取失败！");
+                            } else {
+                                $("#tbody").html("");
+                                $.each(data, function (key, val) {
+                                        if (val.ad_power == "1") {
+                                            var ad_power = "普通管理员";
+                                            var dlbtn = "<button id=\"dlbtn\" type=\"button\" onclick=\"del_ad("+val.ad_id+")\" class=\"btn btn-lg\" style=\"background-color: transparent;border-color: #000000;font-size:10px;color: #000000;\">" + "删除" + "</button>";
+                                        } else {
+                                            var ad_power = "最高管理员";
+                                            var dlbtn = " ";
+                                        }
+                                        var tbody = "<tr>" + "<td id=\"" +val.ad_id+ "\">" + val.ad_id + "</td>"
+                                            + "<td>" + val.ad_name + "</td>"
+                                            + "<td>" + val.ad_password + " </td>"
+                                            + "<td>" + val.ad_nickname + "</td>"
+                                            + "<td>" + ad_power + "</td>"
+                                            + "<td>" + dlbtn + "</td>" + "</tr>";
+                                        $("#tbody").append(tbody);
+                                    });
+                                }
+                        }
+                    })
+                    $.ajax({
+                    url:"/travel_war_exploded/getAllUser",
+                    type:"get",
+                    success:function (data) {
+                        // alert(data);
+                        if (data == "falied"){
+                            alert("数据提取失败!");
+                        } else {
+                            $("#tbody_user").html("");
+                            $.each(data,function (key,val) {
+                                var ad_name = val.user_username;
+                                var ad_password = val.user_password;
+                                var ad_nickname = val.user_nickname;
+                                var upbtn = "<button id=\"upbtn\" type=\"button\" onclick=\"up_user("+ ad_name +","+ ad_password +",\'" + ad_nickname +"\')\" class=\"btn btn-lg\" style=\"background-color: transparent;border-color: #000000;font-size:10px;color: #000000;\">" + "升级" + "</button>";
+                                var banbtn = "<button id=\"banbtn\" type=\"button\" class=\"btn btn-lg\" style=\"background-color: transparent;border-color: #000000;font-size:10px;color: #000000;\">" + "封禁" + "</button>";
+                                var dlbtn = "<button id=\"dlbtn\" type=\"button\" class=\"btn btn-lg\" style=\"background-color: transparent;border-color: #000000;font-size:10px;color: #000000;\">" + "删除" + "</button>";
+                                var tbody = "<tr>" + "<td id=\"" +val.user_id+ "\">" + val.user_id + "</td>"
+                                    + "<td>" + val.user_username + "</td>"
+                                    + "<td>" + val.user_password + " </td>"
+                                    + "<td>" + val.user_nickname + "</td>"
+                                    + "<td>" + upbtn + "</td>"
+                                    + "<td>" + banbtn + "</td>"
+                                    + "<td>" + dlbtn + "</td>" + "</tr>";
+                                $("#tbody_user").append(tbody);
+                            });
+                        }
+
+                    }
+                })
+                }else {
+                $("#welcome").html("");
+                var welcome = "<a class=\"navbar-brand\" href=\"#\" style=\"font-size: 25px;color: #000000\">欢迎您，普通管理员"+ $.cookie("ad_nickname") +"</a>";
+                $("#welcome").append(welcome);
+                $.ajax({
+                    url:"/travel_war_exploded/getAll",
+                    type:"get",
+                    success:function (data) {
+                        if (data == "failed"){
+                            alert("数据提取失败！");
+                        } else{
+                            $("#tbody").html("");
+                            $.each(data, function (key,val) {
+                                if (val.ad_power == "1") {
+                                    var ad_power = "普通管理员";
+                                } else {
+                                    var ad_power = "最高管理员";
+                                }
+                                    var pswd = "不给看哦"
+                                    var dlbtn = "无法删除"
+                                    var tbody = "<tr>" + "<td id=\"" +val.ad_id+ "\">" + val.ad_id + "</td>"
+                                        + "<td>" + val.ad_name + "</td>"
+                                        + "<td>" + pswd + " </td>"
+                                        + "<td>" + val.ad_nickname + "</td>"
+                                        + "<td>" + val.ad_power + "</td>"
+                                        + "<td>" + dlbtn + "</td>" + "</tr>"
+                                    $("#tbody").append(tbody);
+                            });
+                        }
+
+                    }
+                })
+                $.ajax({
+                    url:"/travel_war_exploded/getAllUser",
+                    type:"get",
+                    success:function (data) {
+
+                        if (data == "falied"){
+                            alert("数据提取失败!");
+                        } else {
+                            $("#tbody_user").html("");
+                            $.each(data,function (key,val) {
+                                var banbtn = "<button id=\"banbtn\" type=\"button\" class=\"btn btn-lg\" style=\"background-color: transparent;border-color: #000000;font-size:10px;color: #000000;\">" + "封禁" + "</button>";
+                                var dlbtn = "<button id=\"dlbtn\" type=\"button\" class=\"btn btn-lg\" style=\"background-color: transparent;border-color: #000000;font-size:10px;color: #000000;\">" + "删除" + "</button>";
+                                var tbody = "<tr>" + "<td id=\"" +val.user_id+ "\">" + val.user_id + "</td>"
+                                    + "<td>" + val.user_username + "</td>"
+                                    + "<td>" + val.user_password + " </td>"
+                                    + "<td>" + val.user_nickname + "</td>"
+                                    + "<td>" + banbtn + "</td>"
+                                    + "<td>" + dlbtn + "</td>" + "</tr>";
+                                $("#tbody_user").append(tbody);
+                            });
+                        }
+
+                    }
+                })
+            }
+        })
+
+        function del_ad(ad_id) {
+            $.ajax({
+                url: "/travel_war_exploded/deleteAdministrators?ad_id="+ad_id,
+                type: "get",
+                success: function (data) {
+                    if (data == "failed") {
+                        alert("数据操作失败！")
+                    }else {
+                        $("#tbody").html("");
+                        $.each(data, function (key, val) {
+                            if (val.ad_power == "1") {
+                                var ad_power = "普通管理员";
+                                var dlbtn = "<button id=\"dlbtn\" type=\"button\" onclick=\"del_ad("+ val.ad_id +")\" class=\"btn btn-lg\" style=\"background-color: transparent;border-color: #000000;font-size:10px;color: #000000;\">" + "删除" + "</button>";
+                            } else {
+                                var ad_power = "最高管理员";
+                                var dlbtn = " ";
+                            }
+                            var tbody = "<tr>" + "<td id=\"" +val.ad_id+ "\">" + val.ad_id + "</td>"
+                                + "<td>" + val.ad_name + "</td>"
+                                + "<td>" + val.ad_password + " </td>"
+                                + "<td>" + val.ad_nickname + "</td>"
+                                + "<td>" + ad_power + "</td>"
+                                + "<td>" + dlbtn + "</td>" + "</tr>";
+                            $("#tbody").append(tbody);
+                        });
+                    }
+                }
+            })
+        }
+
+        function up_user(ad_name,ad_password,ad_nickname) {
+            $.ajax({
+                url: "/travel_war_exploded/addAdministrators?ad_name="+ad_name+"&ad_password="+ad_password+"&ad_nickname="+ad_nickname,
+                type: "get",
+                success: function (data) {
+                    if (data == "failed"){
+                        alert("数据读取失败！");
+                    } else {
+                        $("#tbody").html("");
+                        $.each(data,function (key,val) {
+                                if (val.ad_power == "1") {
+                                    var ad_power = "普通管理员";
+                                    var dlbtn = "<button id=\"dlbtn\" type=\"button\" onclick=\"del_ad(" + val.ad_id + ")\" class=\"btn btn-lg\" style=\"background-color: transparent;border-color: #000000;font-size:10px;color: #000000;\">" + "删除" + "</button>";
+                                } else {
+                                    var ad_power = "最高管理员";
+                                    var dlbtn = " ";
+                                }
+                                var tbody = "<tr>" + "<td id=\"" + val.ad_id + "\">" + val.ad_id + "</td>"
+                                    + "<td>" + val.ad_name + "</td>"
+                                    + "<td>" + val.ad_password + " </td>"
+                                    + "<td>" + val.ad_nickname + "</td>"
+                                    + "<td>" + ad_power + "</td>"
+                                    + "<td>" + dlbtn + "</td>" + "</tr>";
+                                $("#tbody").append(tbody);
+                        });
+                    }
+                }
+            })
+        }
+    </script>
+
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-12">
+            <nav id="first" class="navbar navbar-default navbar-fixed-top bg-custom" style="margin-left: 0px">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="#" style="font-size: 25px;color: #000000">逍遥游后台</a>
+                    </li>
+                    <li id="welcome" class="nav-item"></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="controlLogin.html" style="font-size: 20px;color: #000000">返回登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="controlUser.html" style="font-size: 20px;color: #000000">用户后台</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="controlProduct.html" style="font-size: 20px;color: #000000">景点后台</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="controlOrder.html" style="font-size: 20px;color: #000000">订单后台</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <form role="form" style="margin-top: 100px;">
+                <h2>管理员列表</h2>
+                <div id="best_power">
+                    <table class="table">
+                    <thead>
+                        <tr>
+                            <th>  管理员ID  </th>
+                            <th>  管理员用户名  </th>
+                            <th>  管理员密码  </th>
+                            <th>  管理员名字  </th>
+                            <th>  管理员权限  </th>
+                            <th>  删除管理员  </th>
+                        </tr>
+                    </thead>
+                        <tbody id="tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+            <hr>
+
+            <form role="form" style="margin-top: 50px;">
+                <h2>普通用户列表</h2>
+                <div id="user_list">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>  用户ID  </th>
+                            <th>  用户名  </th>
+                            <th>  用户密码  </th>
+                            <th>  用户昵称  </th>
+                            <th>  设置  </th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody_user">
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

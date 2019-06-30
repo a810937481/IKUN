@@ -22,5 +22,5 @@ public interface UserMapper {
 
     int updateUser(User user);
 
-    int updatepassword(@Param("user_id") int id, @Param("password") String password);
+    List<User> getAllUser();
 }

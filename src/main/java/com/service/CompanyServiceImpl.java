@@ -35,4 +35,9 @@ public class CompanyServiceImpl implements CompanyService{
     public int updateByPrimaryKeySelective(Company company){
         return companyMapper.updateByPrimaryKeySelective(company);
     }
+
+    @Override
+    public Company queryCompanyById(int id) {
+        return companyMapper.queryCompanyById(id);
+    }
 }
