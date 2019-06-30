@@ -23,7 +23,7 @@
         <li><a href="${ctx}/tofresh"><i class="fa fa-heartbeat"></i> 新鲜去处</a></li>
         <li><a href="${ctx}/info"><i class="fa fa-bank"></i> 个人信息</a></li>
         <li><a href="#1"><i class="fa fa-credit-card"></i> 支付方式</a></li>
-        <li><a href="#1"><i class="fa fa-bookmark-o"></i> 我的收藏 </a></li>
+        <li><a href="${ctx}/query"><i class="fa fa-search"></i> 搜索商品 </a></li>
         <li><a href="#1"><i class="fa fa-car"></i> 提交工单 </a></li>
         <li><a href="#1"><i class="fa fa-briefcase"></i> 关于我们</a></li>
         <li><a href="${ctx}/quit"><i class="fa fa-location-arrow"></i> 退出登录</a></li>

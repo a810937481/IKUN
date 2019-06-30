@@ -97,6 +97,7 @@
         left join product p
         on o.goods_id=p.product_id
         where o.user_id=#{user_id} and p.company_id=c.company_id
+        order by create_time desc
     </select>
 
     <delete id="delOrder" parameterType="integer">

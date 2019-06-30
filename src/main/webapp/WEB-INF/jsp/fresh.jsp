@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/static/css/freshstyle.css">
 
     <script src="${ctx}/static/js/jquery-3.3.1.min.js"></script>
-    <script>
+<%--    <script>
         $(document).ready(function () {
                 $.ajax({
                     type: "post",
@@ -30,7 +30,7 @@
             }
         );
 
-    </script>
+    </script>--%>
     <style>
         body{
             background: whitesmoke;
@@ -59,7 +59,7 @@
                         <img src="${ctx}${products.get(0).image}" alt="景点">
                     </div>
                     <div class="member-info">
-                        <h3>${products.get(0).product_name}</h3>
+                        <h3 id="catch">${products.get(0).product_name}</h3>
                         <h5>${products.get(0).company_name}</h5>
                         <p>${products.get(0).product_info}</p>
                         <div class="social-touch">

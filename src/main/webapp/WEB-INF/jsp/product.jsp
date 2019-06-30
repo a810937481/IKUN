@@ -83,7 +83,7 @@
             <div id="productInfo">
                 <form id="product" action="${ctx}/queryById" method="get">
                     <div id="image" style="margin-top: 50px;">
-                        <img src="${ctx}/static/${product.image}">
+                        <img src="${ctx}${product.image}">
                     </div>
                     <div style="margin-top: -300px;margin-left: 600px;width: 400px;font-family: ST">
                         <h1>景点名称：${product.product_name}</h1>
@@ -129,6 +129,8 @@
                         <input type="text" id="product_id" name="product_id" style="color: transparent;background-color: transparent;border-color: transparent" value="${product.product_id}">
 
                         <button type="submit" class="btn btn-default btn-lg" style="margin-top: -50px;margin-left: 750px;background-color: transparent;font-family: ST;font-size: 50px">购买</button>
+
+                        <button type="button" class="btn btn-default btn-lg" style="margin-top: -50px;margin-left: 750px;background-color: transparent;font-family: ST;font-size: 50px" onclick="window.location.href='${ctx}/index';">回到首页</button>
 
                     </form>
                 </div>

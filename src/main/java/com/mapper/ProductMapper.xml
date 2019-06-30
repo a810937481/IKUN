@@ -108,7 +108,7 @@
         /*select * from product where product_name like concat('%','${product_name}','%')*/
         select p.product_id,p.product_name,p.product_info,p.company_id,p.price,p.image,c.company_info,c.company_name
         from product p,company c
-        where p.company_id=c.company_id and p.product_name like contact('%','${product_name}','%')
+        where p.company_id=c.company_id and p.product_name like "%"#{product_name}"%"
     </select>
 
     <select id="queryByProduct_id" parameterType="Integer" resultType="com.entity.Product">

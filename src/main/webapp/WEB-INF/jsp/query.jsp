@@ -10,12 +10,20 @@
 <head>
     <title>查询结果</title>
     <link rel="stylesheet" href="${ctx}/static/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="${ctx}/static/daterangepicker/font-awesome.min.css">
     <script src="${ctx}/static/js/jquery-3.3.1.min.js"></script>
     <script src="${ctx}/static/bootstrap/bootstrap.min.js"></script>
 
     <style>
         body{
-            background: url("${ctx}/static/img/searchbackground.png") no-repeat center 0;
+            background: url("${ctx}/static/img/searchbackground.png") repeat center 0;
+        }
+    </style>
+
+    <style type="text/css">
+        @font-face {
+            font-family: ST;
+            src: url("${ctx}/static/fonts/ST.TTF");
         }
     </style>
 
@@ -29,12 +37,7 @@
 <body>
 
 <div class="container-fluid">
-            <div class="row" >
-                <div class="col-md-12"  >
                     <%@include file="navigation.jsp"%>
-                </div>
-            </div>
-
     <header class="htmleaf-header">
         <!--搜索框-->
         <div style="width:530px;margin:0 auto;">
@@ -48,13 +51,14 @@
     <br>
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
         </div>
         <div class="col-md-6">
+            <button type="button" class="btn btn-default btn-lg" style="margin-top: -50px;margin-left: 15px;background-color: transparent;font-family: ST;font-size: 50px" onclick="window.location.href='${ctx}/index';">回到首页</button>
             <c:forEach items="${products}" var="products">
                 <div class="col-md-4">
                     <div class="card">
-                        <img class="card-img-top" alt="Bootstrap Thumbnail First" src="${ctx}/static/${products.image}" />
+                        <img alt="Bootstrap Thumbnail First" src="${ctx}${products.image}" />
                         <div class="card-block">
                             <h5 class="card-title">
                                     ${products.product_name}
@@ -70,6 +74,7 @@
                 </div>
             </c:forEach>
         </div>
+
         <div class="col-md-3">
         </div>
     </div>

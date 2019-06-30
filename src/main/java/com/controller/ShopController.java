@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,9 @@ public class ShopController {
 
     @RequestMapping("/query")
     public ModelAndView doQuery(String product_name,ModelAndView mav) {
+        if (product_name == null) {
+            product_name = "";
+        }
         System.out.println(product_name);
         List<Product> products=productService.queryByProduct_name(product_name);
         mav.addObject("products", products);//用jstl取值
@@ -41,7 +45,7 @@ public class ShopController {
 
 
     @RequestMapping("/doShop")
-    public String doSubmit(HttpServletRequest request,Integer product_id) {
+    public String doSubmit(HttpServletRequest request,@RequestParam("product_id") Integer product_id) {
         //提交到后台商家或者管理员
 
         //用户订单增加

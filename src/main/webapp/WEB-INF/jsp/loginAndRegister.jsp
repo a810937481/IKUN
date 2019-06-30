@@ -15,7 +15,7 @@
 
     <style>
         body{
-            background: url("${ctx}/static/img/background.png") no-repeat center 0;
+            background: url("${ctx}/static/img/planB.png") no-repeat center 0;
         }
 
         .nav{
@@ -203,6 +203,11 @@
         })
     </script>
 
+    <c:if test="${!empty msg}">
+        <script>
+            alert("${msg}");
+        </script>
+    </c:if>
 
 </head>
 <body>
